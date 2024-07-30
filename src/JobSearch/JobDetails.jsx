@@ -1,8 +1,9 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
-
+import { useParams, useNavigate } from 'react-router-dom';
+import { IoIosArrowBack } from "react-icons/io";
 const JobDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   
   // You might fetch job details from an API or state. For now, using static data.
   const job = {
@@ -11,7 +12,7 @@ const JobDetails = () => {
     company: 'Company Name',
     location: 'Location',
     type: 'Job Type',
-    description: 'Job description details go here.',
+    description: 'Job description details go here.\nMore details about the job description.',
     companyType: 'Company Type',
     postedDate: new Date()
   };
@@ -28,7 +29,15 @@ const JobDetails = () => {
 
   return (
     <div className="container mx-auto p-6">
-      <div className="p-4 rounded bg-white shadow-md text-left">
+      <button
+        onClick={() => navigate(-1)}
+        className="mb-4 flex items-center p-2 text-gray-700 hover:text-gray-900 focus:outline-none font-semibold"
+      >
+        <IoIosArrowBack className="mr-2 text-orange-600 font-semibold"/>
+        Back To Search
+      </button>
+      <div className="border-t mt-4"></div>
+      <div className="bg-white text-left p-4 rounded shadow-md">
         <h2 className="text-2xl font-bold mb-2">{job.title}</h2>
         <p className="text-gray-700 mb-2">{job.company}</p>
         <p className="text-gray-700 mb-2">{job.location}</p>
