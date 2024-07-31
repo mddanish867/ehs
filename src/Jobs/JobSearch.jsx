@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import JobList from "./JobList"; // Import JobList component
 import JobDetails from "./JobDetails"; // Import JobDetails component
@@ -10,96 +10,89 @@ const JobSearch = () => {
   const [showResults, setShowResults] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedJobId, setSelectedJobId] = useState(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   const [jobs, setJobs] = useState([
     {
       id: 1,
-      title: "Software Engineer",
-      company: "Amazon",
-      location: "New York",
-      type: "Full-time",
-      description:
-        "Develop and maintain software solutions.\nCollaborate with cross-functional teams.\nParticipate in code reviews.",
-      companyType: "Tech",
-      postedDate: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000), // 3 days ago
+      title: 'Software Engineer',
+      company: 'Amazon',
+      location: 'New York',
+      type: 'Full-time',
+      description: 'Develop and maintain software solutions.\nCollaborate with cross-functional teams.\nParticipate in code reviews.',
+      companyType: 'Tech',
+      postedDate: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000) // 3 days ago
     },
     {
       id: 2,
-      title: "Product Manager",
-      company: "Google",
-      location: "San Francisco",
-      type: "Part-time",
-      description:
-        "Manage product lifecycle from ideation to launch.\nConduct market research.\nDefine product vision and strategy.",
-      companyType: "Tech",
-      postedDate: new Date(), // Today
+      title: 'Product Manager',
+      company: 'Google',
+      location: 'San Francisco',
+      type: 'Part-time',
+      description: 'Manage product lifecycle from ideation to launch.\nConduct market research.\nDefine product vision and strategy.',
+      companyType: 'Tech',
+      postedDate: new Date() // Today
     },
     {
       id: 3,
-      title: "Data Scientist",
-      company: "Microsoft",
-      location: "Remote",
-      type: "Contract",
-      description:
-        "Analyze data and build predictive models.\nDevelop data pipelines.\nPresent insights to stakeholders.",
-      companyType: "Tech",
-      postedDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000), // 2 days ago
+      title: 'Data Scientist',
+      company: 'Microsoft',
+      location: 'Remote',
+      type: 'Contract',
+      description: 'Analyze data and build predictive models.\nDevelop data pipelines.\nPresent insights to stakeholders.',
+      companyType: 'Tech',
+      postedDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) // 2 days ago
     },
     {
-      id: 4,
-      title: "Data Scientist",
-      company: "Microsoft",
-      location: "Remote",
-      type: "Contract",
-      description:
-        "Analyze data and build predictive models.\nDevelop data pipelines.\nPresent insights to stakeholders.",
-      companyType: "Tech",
-      postedDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000), // 2 days ago
-    },
-    {
-      id: 5,
-      title: "Data Scientist",
-      company: "Microsoft",
-      location: "Remote",
-      type: "Contract",
-      description:
-        "Analyze data and build predictive models.\nDevelop data pipelines.\nPresent insights to stakeholders.",
-      companyType: "Tech",
-      postedDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000), // 2 days ago
-    },
-    {
-      id: 6,
-      title: "Data Scientist",
-      company: "Microsoft",
-      location: "Remote",
-      type: "Contract",
-      description:
-        "Analyze data and build predictive models.\nDevelop data pipelines.\nPresent insights to stakeholders.",
-      companyType: "Tech",
-      postedDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000), // 2 days ago
-    },
-    {
-      id: 7,
-      title: "Data Scientist",
-      company: "Microsoft",
-      location: "Remote",
-      type: "Contract",
-      description:
-        "Analyze data and build predictive models.\nDevelop data pipelines.\nPresent insights to stakeholders.",
-      companyType: "Tech",
-      postedDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000), // 2 days ago
-    },
-    {
-      id: 8,
-      title: "Data Scientist",
-      company: "Microsoft",
-      location: "Remote",
-      type: "Contract",
-      description:
-        "Analyze data and build predictive models.\nDevelop data pipelines.\nPresent insights to stakeholders.",
-      companyType: "Tech",
-      postedDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000), // 2 days ago
-    },
+        id: 4,
+        title: 'Data Scientist',
+        company: 'Microsoft',
+        location: 'Remote',
+        type: 'Contract',
+        description: 'Analyze data and build predictive models.\nDevelop data pipelines.\nPresent insights to stakeholders.',
+        companyType: 'Tech',
+        postedDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) // 2 days ago
+      },
+      {
+        id: 5,
+        title: 'Data Scientist',
+        company: 'Microsoft',
+        location: 'Remote',
+        type: 'Contract',
+        description: 'Analyze data and build predictive models.\nDevelop data pipelines.\nPresent insights to stakeholders.',
+        companyType: 'Tech',
+        postedDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) // 2 days ago
+      },
+      {
+        id: 6,
+        title: 'Data Scientist',
+        company: 'Microsoft',
+        location: 'Remote',
+        type: 'Contract',
+        description: 'Analyze data and build predictive models.\nDevelop data pipelines.\nPresent insights to stakeholders.',
+        companyType: 'Tech',
+        postedDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) // 2 days ago
+      },
+      {
+        id: 7,
+        title: 'Data Scientist',
+        company: 'Microsoft',
+        location: 'Remote',
+        type: 'Contract',
+        description: 'Analyze data and build predictive models.\nDevelop data pipelines.\nPresent insights to stakeholders.',
+        companyType: 'Tech',
+        postedDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) // 2 days ago
+      },
+      {
+        id: 8,
+        title: 'Data Scientist',
+        company: 'Microsoft',
+        location: 'Remote',
+        type: 'Contract',
+        description: 'Analyze data and build predictive models.\nDevelop data pipelines.\nPresent insights to stakeholders.',
+        companyType: 'Tech',
+        postedDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) // 2 days ago
+      },
   ]);
 
   const filteredJobs = jobs.filter((job) => {
@@ -131,13 +124,25 @@ const JobSearch = () => {
   const navigate = useNavigate();
 
   const handleJobClick = (jobId) => {
-    if (window.innerWidth <= 768) {
-      // For small devices
+    if (isMobile) {
+      // For mobile devices, navigate to the job details page
       navigate(`/job/${jobId}`);
     } else {
+      // For larger devices, show details in the same page
       setSelectedJobId(jobId);
     }
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Clean up event listener on unmount
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <div className="container mx-auto p-6">
@@ -219,15 +224,15 @@ const JobSearch = () => {
           </div>
 
           {/* Job Details */}
-          <div className="w-full sm:w-2/3 pl-4">
-            {selectedJobId && !window.location.pathname.includes("/job/") && (
+          {!isMobile && selectedJobId && (
+            <div className="w-full sm:w-2/3 pl-4">
               <JobDetails
                 job={filteredJobs.find((job) => job.id === selectedJobId)}
                 formatDescription={formatDescription}
                 formatDate={formatDate}
               />
-            )}
-          </div>
+            </div>
+          )}
         </div>
       )}
     </div>

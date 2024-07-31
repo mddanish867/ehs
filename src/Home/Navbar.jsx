@@ -24,7 +24,9 @@ const Navbar = () => {
       <nav className="container mx-auto flex items-center justify-between">
         <div className="flex items-center">
           <div className="text-2xl font-bold text-gray-900">
-            <img src="./logo-black.png" alt="Logo" className="w-24" />
+            <a href="/" className="flex items-center">
+              <img src="./logo-black.png" alt="Logo" className="w-24" />
+            </a>
           </div>
           <div className="hidden md:flex space-x-6 ml-6">
             <div className="relative group">
@@ -222,7 +224,9 @@ const Navbar = () => {
             <div className="absolute right-0 mt-3 w-64 bg-white shadow-lg hidden group-hover:block">
               <div className="p-4">
                 <div className="flex items-center space-x-2 mt-2">
-                  <div className="text-gray-700 font-semibold">mddanish867@gmail.com</div>
+                  <div className="text-gray-700 font-semibold">
+                    mddanish867@gmail.com
+                  </div>
                 </div>
                 <div className="flex items-center space-x-2 mt-4">
                   <SiGoogledocs className="text-gray-700 w-6 h-6" />
