@@ -31,7 +31,7 @@ const Navbar = () => {
           <div className="hidden md:flex space-x-6 ml-6">
             <div className="relative group">
               <button className="text-gray-700 hover:text-gray-900 focus:outline-none flex items-center">
-                ORGANIZATIONS
+                Organizations
                 <FaAngleDown className="ml-2 group-hover:hidden" />
                 <FaAngleUp className="ml-2 hidden group-hover:block" />
               </button>
@@ -46,7 +46,7 @@ const Navbar = () => {
                       alt="POST A JOB"
                       className="w-16 h-16 object-cover"
                     />
-                    <div className="ml-4 text-gray-700">POST A JOB</div>
+                    <div className="ml-4 text-gray-700">Post new jobs</div>
                   </a>
                   <a
                     href="#"
@@ -57,7 +57,7 @@ const Navbar = () => {
                       alt="FIND NEW TALENTS"
                       className="w-16 h-16 object-cover"
                     />
-                    <div className="ml-4 text-gray-700">FIND NEW TALENTS</div>
+                    <div className="ml-4 text-gray-700">Find new talents</div>
                   </a>
                   <a
                     href="#"
@@ -75,7 +75,7 @@ const Navbar = () => {
             </div>
             <div className="relative group">
               <button className="text-gray-700 hover:text-gray-900 focus:outline-none flex items-center">
-                INDIVIDUALS
+                Individuals
                 <FaAngleDown className="ml-2 group-hover:hidden" />
                 <FaAngleUp className="ml-2 hidden group-hover:block" />
               </button>
@@ -119,7 +119,7 @@ const Navbar = () => {
             </div>
             <div className="relative group">
               <button className="text-gray-700 hover:text-gray-900 focus:outline-none flex items-center">
-                RESUME
+                Resume
                 <FaAngleDown className="ml-2 group-hover:hidden" />
                 <FaAngleUp className="ml-2 hidden group-hover:block" />
               </button>
@@ -163,7 +163,7 @@ const Navbar = () => {
             </div>
             <div className="relative group">
               <button className="text-gray-700 hover:text-gray-900 focus:outline-none flex items-center">
-                SOLUTIONS
+                Solutions
                 <FaAngleDown className="ml-2 group-hover:hidden" />
                 <FaAngleUp className="ml-2 hidden group-hover:block" />
               </button>
@@ -206,10 +206,10 @@ const Navbar = () => {
               </div>
             </div>
             <a href="#" className="text-gray-700 hover:text-gray-900">
-              ABOUT US
+              About
             </a>
             <a href="#" className="text-gray-700 hover:text-gray-900">
-              CONTACT US
+              Contact
             </a>
           </div>
         </div>

@@ -43,61 +43,14 @@ const JobSearch = () => {
       companyType: 'Tech',
       postedDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) // 2 days ago
     },
-    {
-        id: 4,
-        title: 'Data Scientist',
-        company: 'Microsoft',
-        location: 'Remote',
-        type: 'Contract',
-        description: 'Analyze data and build predictive models.\nDevelop data pipelines.\nPresent insights to stakeholders.',
-        companyType: 'Tech',
-        postedDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) // 2 days ago
-      },
-      {
-        id: 5,
-        title: 'Data Scientist',
-        company: 'Microsoft',
-        location: 'Remote',
-        type: 'Contract',
-        description: 'Analyze data and build predictive models.\nDevelop data pipelines.\nPresent insights to stakeholders.',
-        companyType: 'Tech',
-        postedDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) // 2 days ago
-      },
-      {
-        id: 6,
-        title: 'Data Scientist',
-        company: 'Microsoft',
-        location: 'Remote',
-        type: 'Contract',
-        description: 'Analyze data and build predictive models.\nDevelop data pipelines.\nPresent insights to stakeholders.',
-        companyType: 'Tech',
-        postedDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) // 2 days ago
-      },
-      {
-        id: 7,
-        title: 'Data Scientist',
-        company: 'Microsoft',
-        location: 'Remote',
-        type: 'Contract',
-        description: 'Analyze data and build predictive models.\nDevelop data pipelines.\nPresent insights to stakeholders.',
-        companyType: 'Tech',
-        postedDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) // 2 days ago
-      },
-      {
-        id: 8,
-        title: 'Data Scientist',
-        company: 'Microsoft',
-        location: 'Remote',
-        type: 'Contract',
-        description: 'Analyze data and build predictive models.\nDevelop data pipelines.\nPresent insights to stakeholders.',
-        companyType: 'Tech',
-        postedDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) // 2 days ago
-      },
+    // Additional job entries...
   ]);
 
   const filteredJobs = jobs.filter((job) => {
     return (
-      job.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      (job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+       job.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
+       job.description.toLowerCase().includes(searchTerm.toLowerCase())) &&
       job.location.toLowerCase().includes(location.toLowerCase()) &&
       job.type.toLowerCase().includes(jobType.toLowerCase())
     );
@@ -145,67 +98,49 @@ const JobSearch = () => {
   }, []);
 
   return (
-    <div className="container mx-auto p-6">
-      {/* Conditionally render the banner */}
-      {!showResults && (
-        <div className="mb-6 p-4 bg-blue-100 rounded flex flex-col sm:flex-row items-center">
-          <div className="flex-1 text-left">
-            <h1 className="text-2xl font-bold text-blue-700">Join Our Team!</h1>
-            <p className="text-blue-600">
-              We are looking for talented individuals to join our amazing team.
-              Explore job opportunities and apply now.
-            </p>
-          </div>
-          <div className="hidden sm:block flex-1">
-            <img
-              src="https://via.placeholder.com/400x200"
-              alt="Hiring"
-              className="w-full h-auto object-cover rounded"
-            />
-          </div>
-        </div>
-      )}
-
+    <div className="p-6">
       {/* Filter Section */}
-      <div className="mb-4">
-        <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 justify-center">
-          <input
-            type="text"
-            placeholder="Search job titles"
-            className="w-full sm:max-w-xs p-2 border border-gray-300 rounded sm:border-r sm:rounded-none outline-none"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Location"
-            className="w-full sm:max-w-xs p-2 border border-gray-300 rounded sm:border-r sm:rounded-none outline-none"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-          />
-          <select
-            className="w-full sm:max-w-xs p-2 border border-gray-300 rounded sm:border-r sm:rounded-none outline-none"
-            value={jobType}
-            onChange={(e) => setJobType(e.target.value)}
-          >
-            <option value="">Job Type</option>
-            <option value="full-time">Full-time</option>
-            <option value="part-time">Part-time</option>
-            <option value="contract">Contract</option>
-            <option value="internship">Internship</option>
-          </select>
-          <button
-            className="p-2 lg:w-24 bg-gray-700 text-white rounded"
-            onClick={() => {
-              setShowResults(true);
-              setCurrentPage(1); // Reset to first page on new search
-              if (filteredJobs.length > 0) {
-                setSelectedJobId(filteredJobs[0].id); // Select the first job by default
-              }
-            }}
-          >
-            Search
-          </button>
+      <div className="mb-4 lg:bg-gradient-to-r lg:from-gray-400 lg:via-gray-900 lg:to-gray-400 lg:p-14">
+        <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-0 justify-center lg:rounded-full shadow-lg lg:bg-white lg:p-2">
+          <div className="flex flex-col sm:flex-row w-full">
+            <input
+              type="text"
+              placeholder="Search by job, company or skills"
+              className="flex-grow p-2 lg:border-none border-gray-300 rounded-none sm:rounded-l-lg outline-none"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Location"
+              className="flex-grow p-2 lg:border-l-2 border-gray-300 rounded-none outline-none"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+            />
+            <select
+              className="flex-grow p-2 lg:border-l-2 border-gray-300 rounded-none outline-none"
+              value={jobType}
+              onChange={(e) => setJobType(e.target.value)}
+            >
+              <option value="">Job Type</option>
+              <option value="full-time">Full-time</option>
+              <option value="part-time">Part-time</option>
+              <option value="contract">Contract</option>
+              <option value="internship">Internship</option>
+            </select>
+            <button
+              className="p-2 lg:w-24 bg-gray-700 text-white lg:rounded-full"
+              onClick={() => {
+                setShowResults(true);
+                setCurrentPage(1); // Reset to first page on new search
+                if (filteredJobs.length > 0) {
+                  setSelectedJobId(filteredJobs[0].id); // Select the first job by default
+                }
+              }}
+            >
+              Search
+            </button>
+          </div>
         </div>
       </div>
 
