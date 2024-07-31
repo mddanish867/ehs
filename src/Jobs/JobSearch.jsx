@@ -43,7 +43,56 @@ const JobSearch = () => {
       companyType: 'Tech',
       postedDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) // 2 days ago
     },
-    // More job data...
+    {
+        id: 4,
+        title: 'Data Scientist',
+        company: 'Microsoft',
+        location: 'Remote',
+        type: 'Contract',
+        description: 'Analyze data and build predictive models.\nDevelop data pipelines.\nPresent insights to stakeholders.',
+        companyType: 'Tech',
+        postedDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) // 2 days ago
+      },
+      {
+        id: 5,
+        title: 'Data Scientist',
+        company: 'Microsoft',
+        location: 'Remote',
+        type: 'Contract',
+        description: 'Analyze data and build predictive models.\nDevelop data pipelines.\nPresent insights to stakeholders.',
+        companyType: 'Tech',
+        postedDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) // 2 days ago
+      },
+      {
+        id: 6,
+        title: 'Data Scientist',
+        company: 'Microsoft',
+        location: 'Remote',
+        type: 'Contract',
+        description: 'Analyze data and build predictive models.\nDevelop data pipelines.\nPresent insights to stakeholders.',
+        companyType: 'Tech',
+        postedDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) // 2 days ago
+      },
+      {
+        id: 7,
+        title: 'Data Scientist',
+        company: 'Microsoft',
+        location: 'Remote',
+        type: 'Contract',
+        description: 'Analyze data and build predictive models.\nDevelop data pipelines.\nPresent insights to stakeholders.',
+        companyType: 'Tech',
+        postedDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) // 2 days ago
+      },
+      {
+        id: 8,
+        title: 'Data Scientist',
+        company: 'Microsoft',
+        location: 'Remote',
+        type: 'Contract',
+        description: 'Analyze data and build predictive models.\nDevelop data pipelines.\nPresent insights to stakeholders.',
+        companyType: 'Tech',
+        postedDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) // 2 days ago
+      },
   ]);
 
   const filteredJobs = jobs.filter(job => {
