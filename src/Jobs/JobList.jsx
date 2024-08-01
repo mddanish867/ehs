@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-const JobList = ({ jobs,formatDescription, formatDate, onJobClick }) => {
+const JobList = ({ jobs, formatDescription, formatDate, onJobClick }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const jobsPerPage = 3; // Number of jobs to display per page
- // Pagination calculations
- const totalJobs = jobs.length;
- const totalPages = Math.ceil(totalJobs / jobsPerPage);
- const indexOfLastJob = currentPage * jobsPerPage;
- const indexOfFirstJob = indexOfLastJob - jobsPerPage;
- const currentJobs = jobs.slice(indexOfFirstJob, indexOfLastJob);
+  // Pagination calculations
+  const totalJobs = jobs.length;
+  const totalPages = Math.ceil(totalJobs / jobsPerPage);
+  const indexOfLastJob = currentPage * jobsPerPage;
+  const indexOfFirstJob = indexOfLastJob - jobsPerPage;
+  const currentJobs = jobs.slice(indexOfFirstJob, indexOfLastJob);
 
- const handlePageChange = (pageNumber) => {
-   setCurrentPage(pageNumber);
- };
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   return (
     <div>
@@ -37,41 +38,41 @@ const JobList = ({ jobs,formatDescription, formatDate, onJobClick }) => {
         ))}
       </div>
       {/* Pagination */}
-     {/* Pagination */}
-     <div className="flex justify-center mt-4">
-        <nav aria-label="Page navigation">
-          <ul className="inline-flex -space-x-px">
-            <li>
+      <div className="flex justify-center mt-4">
+      <nav aria-label="Page navigation">
+        <ul className="inline-flex -space-x-px">
+          <li>
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              className="flex items-center justify-center px-3 py-2 border-none border-gray-300 text-gray-500 rounded-l disabled:opacity-50"
+              disabled={currentPage === 1}
+            >
+              <FaChevronLeft className="text-lg" />
+            </button>
+          </li>
+          {Array.from({ length: totalPages }, (_, index) => (
+            <li key={index}>
               <button
-                onClick={() => handlePageChange(currentPage - 1)}
-                className="px-3 py-1.5 border border-gray-300 text-gray-500 bg-white rounded-l hover:bg-gray-900 hover:text-white disabled:opacity-50"
-                disabled={currentPage === 1}
+                onClick={() => handlePageChange(index + 1)}
+                className={`flex items-center justify-center px-3 py-1 border border-gray-300 text-gray-300 bg-white hover:bg-gray-900 hover:text-white ${currentPage === index + 1 ? 'bg-black text-white' : ''}`}
               >
-                Previous
+                {index + 1}
               </button>
             </li>
-            {Array.from({ length: totalPages }, (_, index) => (
-              <li key={index}>
-                <button
-                  onClick={() => handlePageChange(index + 1)}
-                  className={`px-3 py-1.5 border border-gray-300 text-gray-300 bg-white hover:bg-gray-900 hover:text-white ${currentPage === index + 1 ? 'bg-gray-700 hover:bg-gray-900 hover:text-white' : ''}`}
-                >
-                  {index + 1}
-                </button>
-              </li>
-            ))}
-            <li>
-              <button
-                onClick={() => handlePageChange(currentPage + 1)}
-                className="px-3 py-1.5 border border-gray-300 text-gray-500 bg-white rounded-r hover:bg-gray-900 hover:text-white disabled:opacity-50"
-                disabled={currentPage === totalPages}
-              >
-                Next
-              </button>
-            </li>
-          </ul>
-        </nav>
-      </div>
+          ))}
+          <li>
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              className="flex items-center justify-center px-3 py-2 border-none border-gray-300 text-gray-500 rounded-r disabled:opacity-50"
+              disabled={currentPage === totalPages}
+            >
+              <FaChevronRight className="text-lg" />
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+      {/* Pagination */}
     </div>
   );
 };
