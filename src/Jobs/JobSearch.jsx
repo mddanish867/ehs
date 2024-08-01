@@ -156,59 +156,61 @@ const JobSearch = () => {
 
   return (
     <div className="p-6">
+      <h1 className="font-bold text-5xl mt-4 lg:text-5xl lg:mt-10 sm:text-3xl sm:mt-6 sm:ml-4 sm:text-center">
+  Find your<br className="block sm:hidden" /> dream job now
+</h1>
+
+
+<p className="mt-6 mb-5 font-semibold text-left sm:text-center sm:ml-4">
+  We are here to make the hiring easy
+</p>
       {/* Filter Section */}
-      <div className="mb-4 lg:bg-gradient-to-r lg:from-gray-600 lg:via-gray-900 lg:to-gray-600 lg:p-14">
-        <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-0 justify-center lg:rounded-full lg:shadow-lg lg:bg-white lg:p-2">
-          <div className="flex flex-col sm:flex-row w-full">
-            <input
-              type="text"
-              placeholder="Search by job, company or skills"
-              className="flex-grow p-2 sm:border-none border border-gray-300 rounded outline-none"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <input
-              type="text"
-              placeholder="Location"
-              className="flex-grow p-2 sm:border-none border border-gray-300 rounded outline-none mt-1 sm:mt-0"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-            />
-            <div className="relative flex-grow">
-              <select
-                className="w-full p-2 sm:border-none border border-gray-300 rounded outline-none text-gray-400 bg-white mt-1 sm:mt-0 pr-10"
-                value={jobType}
-                onChange={(e) => setJobType(e.target.value)}
-                style={{ appearance: "none" }}
-              >
-                <option value="">Job Type</option>
-                <option value="full-time">Full-time</option>
-                <option value="part-time">Part-time</option>
-                <option value="contract">Contract</option>
-                <option value="internship">Internship</option>
-              </select>
+      <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 mb-5 sm:space-x-2 justify-center lg:w-[80%] lg:ml-28 lg:mt-10 lg:mb-16 lg:rounded-full lg:shadow-lg lg:bg-white lg:p-4">
+  <div className="flex flex-col sm:flex-row w-full">
+    <input
+      type="text"
+      placeholder="Search by job, company or skills"
+      className="flex-grow p-2 sm:border-none border border-gray-300 rounded outline-none"
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+    />
+    <input
+      type="text"
+      placeholder="Location"
+      className="flex-grow p-2 border border-gray-300 rounded outline-none mt-1 sm:mt-0 lg:border-b-0 lg:border-t-0 lg:border-gray-300"
+      value={location}
+      onChange={(e) => setLocation(e.target.value)}
+    />
+    <div className="flex-grow">
+      <select
+        className="w-full p-2 sm:border-none border border-gray-300 rounded outline-none text-gray-400 bg-white mt-1 sm:mt-0 pr-10"
+        value={jobType}
+        onChange={(e) => setJobType(e.target.value)}
+        style={{ appearance: "none" }}
+      >
+        <option value="">Job Type</option>
+        <option value="full-time">Full-time</option>
+        <option value="part-time">Part-time</option>
+        <option value="contract">Contract</option>
+        <option value="internship">Internship</option>
+      </select>      
+    </div>
 
-              {/* Custom dropdown icon */}
-              <div className="absolute inset-y-0 right-5 flex items-center pointer-events-none">
-                <FaChevronDown className="text-gray-400" />
-              </div>
-            </div>
+    <button
+      className="p-2 lg:w-24 bg-gray-700 text-white lg:rounded-full mt-1 sm:mt-0 sm:rounded"
+      onClick={() => {
+        setShowResults(true);
+        setCurrentPage(1); // Reset to first page on new search
+        if (filteredJobs.length > 0) {
+          setSelectedJobId(filteredJobs[0].id); // Select the first job by default
+        }
+      }}
+    >
+      Search
+    </button>
+  </div>
+</div>
 
-            <button
-              className="p-2 lg:w-24 bg-gray-700 text-white lg:rounded-full mt-1 sm:mt-0 sm:rounded"
-              onClick={() => {
-                setShowResults(true);
-                setCurrentPage(1); // Reset to first page on new search
-                if (filteredJobs.length > 0) {
-                  setSelectedJobId(filteredJobs[0].id); // Select the first job by default
-                }
-              }}
-            >
-              Search
-            </button>
-          </div>
-        </div>
-      </div>
 
       {/* Results Section */}
       {showResults && (

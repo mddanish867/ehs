@@ -11,16 +11,17 @@ import { SiGoogledocs } from "react-icons/si";
 import { RiBookmark3Fill } from "react-icons/ri";
 import { IoSettingsSharp } from "react-icons/io5";
 import { TbHelpSquareFilled } from "react-icons/tb";
+import Login from "../Authentication/Login";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoginFormOpen, setIsLoginFormOpen] = useState(false); // State for login form
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleMenu = () => setIsOpen(!isOpen);
+  const toggleLoginForm = () => setIsLoginFormOpen(!isLoginFormOpen); // Toggle login form
 
-  return (
-    <header className="bg-white shadow">
+    return (
+    <header className="bg-white shadow sticky top-0 z-50">
       <nav className="container mx-auto flex items-center justify-between">
         <div className="flex items-center">
           <div className="text-2xl font-bold text-gray-900 ml-4">
@@ -214,7 +215,9 @@ const Navbar = () => {
           </div>
         </div>
         <div className="flex items-center space-x-4 mr-8 lg:mr-20">
-          <button className="text-gray-700 font-semibold py-2 px-6 hover:gray-900 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-opacity-50 transition duration-300 ease-in-out h-10">
+          <button 
+          onClick={toggleLoginForm}
+          className="text-gray-700 font-semibold py-2 px-6 hover:gray-900 focus:outline-none focus:ring-0 focus:ring-gray-700 focus:ring-opacity-50 transition duration-300 ease-in-out h-10">
             Login
           </button>
           <FaEnvelope className="text-gray-700 hover:text-gray-900 cursor-pointer w-6 h-6 lg:w-14" />
@@ -251,7 +254,7 @@ const Navbar = () => {
                 <div className="border-t mt-4"></div>
                 <a
                   href="#"
-                  className="block mt-2 text-sm text-gray-600 hover:bg-gray-200 rounded-lg p-2"
+                  className="block text-center mt-2 text-sm text-gray-600 hover:bg-gray-200 rounded-lg p-2"
                 >
                   Sign Out
                 </a>
@@ -496,6 +499,8 @@ const Navbar = () => {
           </a>
         </div>
       </div>
+      {/* Login Form Modal */}
+      {isLoginFormOpen && <Login onClose={toggleLoginForm} />} {/* Include LoginForm here */}
     </header>
   );
 };

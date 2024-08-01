@@ -21,7 +21,7 @@ const JobList = ({ jobs, formatDescription, formatDate, onJobClick }) => {
         {currentJobs.map((job) => (
           <div
             key={job.id}
-            className="p-4 cursor-pointer border rounded shadow-md hover:bg-gray-100"
+            className="p-4 cursor-pointer border rounded shadow-md bg-white hover:bg-gray-100"
             onClick={() => onJobClick(job.id)}
           >
             <h2 className="text-2xl font-bold">{job.title}</h2>
