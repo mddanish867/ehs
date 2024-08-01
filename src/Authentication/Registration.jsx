@@ -81,7 +81,7 @@ const Registration = () => {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded shadow-lg w-full max-w-md -mt-48 sm:mt-0">
-        <h2 className="text-2xl font-bold mb-6">Register</h2>
+        <h2 className="text-2xl font-bold mb-6 lg:text-center">Register</h2>
         <form onSubmit={handleSubmit}>
           <div className="relative mb-4">
             <div className={`absolute left-0 top-1/2 transform -translate-y-1/2 px-2 text-red-500 text-xs ${!errors.name ? 'invisible' : ''}`}>
