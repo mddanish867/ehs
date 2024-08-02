@@ -29,6 +29,7 @@ function App() {
             />
             <Route path="/" element={<Home />} />
             <Route path="/job/:id" element={<JobDetails />} />
+
             {/* Add other routes here */}
           </Routes>
         </Layout>

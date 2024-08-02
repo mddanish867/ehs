@@ -12,15 +12,38 @@ import { RiBookmark3Fill } from "react-icons/ri";
 import { IoSettingsSharp } from "react-icons/io5";
 import { TbHelpSquareFilled } from "react-icons/tb";
 import Login from "../Authentication/Login";
+import menuData from "../menuDtata/menuData.json"; // Import the JSON data
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoginFormOpen, setIsLoginFormOpen] = useState(false); // State for login form
+  const [activeMenu, setActiveMenu] = useState(null); // Track the currently open menu in mobile view
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const toggleLoginForm = () => setIsLoginFormOpen(!isLoginFormOpen); // Toggle login form
 
-    return (
+  const handleMenuClick = (menuKey) => {
+    setActiveMenu(activeMenu === menuKey ? null : menuKey);
+  };
+
+  const renderMenuItems = (menuKey) => {
+    return menuData[menuKey].map((item, index) => (
+      <a
+        key={index}
+        href={item.link}
+        className="flex items-center p-2 hover:bg-gray-100"
+      >
+        <img
+          src={item.image}
+          alt={item.title}
+          className="w-16 h-16 object-cover"
+        />
+        <div className="ml-4 text-gray-700">{item.title}</div>
+      </a>
+    ));
+  };
+
+  return (
     <header className="bg-white shadow sticky top-0 z-50">
       <nav className="container mx-auto flex items-center justify-between">
         <div className="flex items-center">
@@ -30,182 +53,20 @@ const Navbar = () => {
             </a>
           </div>
           <div className="hidden md:flex space-x-6 ml-6">
-            <div className="relative group">
-              <button className="text-gray-700 hover:text-gray-900 focus:outline-none flex items-center">
-                Organizations
-                <FaAngleDown className="ml-2 group-hover:hidden" />
-                <FaAngleUp className="ml-2 hidden group-hover:block" />
-              </button>
-              <div className="absolute left-0 mt-2 w-72 bg-white shadow-lg hidden group-hover:block">
-                <div className="p-4">
-                  <a
-                    href="#"
-                    className="flex items-center p-2 hover:bg-gray-100"
-                  >
-                    <img
-                      src="https://via.placeholder.com/100"
-                      alt="POST A JOB"
-                      className="w-16 h-16 object-cover"
-                    />
-                    <div className="ml-4 text-gray-700">Post new jobs</div>
-                  </a>
-                  <a
-                    href="#"
-                    className="flex items-center p-2 mt-2 hover:bg-gray-100"
-                  >
-                    <img
-                      src="https://via.placeholder.com/100"
-                      alt="FIND NEW TALENTS"
-                      className="w-16 h-16 object-cover"
-                    />
-                    <div className="ml-4 text-gray-700">Find new talents</div>
-                  </a>
-                  <a
-                    href="#"
-                    className="flex items-center p-2 mt-2 hover:bg-gray-100"
-                  >
-                    <img
-                      src="https://via.placeholder.com/100"
-                      alt="Feature 3"
-                      className="w-16 h-16 object-cover"
-                    />
-                    <div className="ml-4 text-gray-700">Feature 3</div>
-                  </a>
+            {["organizations", "individuals", "resume", "solutions"].map(
+              (menuKey) => (
+                <div key={menuKey} className="relative group">
+                  <button className="text-gray-700 hover:text-gray-900 focus:outline-none flex items-center">
+                    {menuKey.charAt(0).toUpperCase() + menuKey.slice(1)}
+                    <FaAngleDown className="ml-2 group-hover:hidden" />
+                    <FaAngleUp className="ml-2 hidden group-hover:block" />
+                  </button>
+                  <div className="absolute left-0 mt-2 w-64 bg-white shadow-lg hidden group-hover:block">
+                    <div className="p-4">{renderMenuItems(menuKey)}</div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div className="relative group">
-              <button className="text-gray-700 hover:text-gray-900 focus:outline-none flex items-center">
-                Individuals
-                <FaAngleDown className="ml-2 group-hover:hidden" />
-                <FaAngleUp className="ml-2 hidden group-hover:block" />
-              </button>
-              <div className="absolute left-0 mt-2 w-64 bg-white shadow-lg hidden group-hover:block">
-                <div className="p-4">
-                  <a
-                    href="#"
-                    className="flex items-center p-2 hover:bg-gray-100"
-                  >
-                    <img
-                      src="https://via.placeholder.com/100"
-                      alt="Feature 1"
-                      className="w-16 h-16 object-cover"
-                    />
-                    <div className="ml-4 text-gray-700">Feature 1</div>
-                  </a>
-                  <a
-                    href="#"
-                    className="flex items-center p-2 mt-2 hover:bg-gray-100"
-                  >
-                    <img
-                      src="https://via.placeholder.com/100"
-                      alt="Feature 2"
-                      className="w-16 h-16 object-cover"
-                    />
-                    <div className="ml-4 text-gray-700">Feature 2</div>
-                  </a>
-                  <a
-                    href="#"
-                    className="flex items-center p-2 mt-2 hover:bg-gray-100"
-                  >
-                    <img
-                      src="https://via.placeholder.com/100"
-                      alt="Feature 3"
-                      className="w-16 h-16 object-cover"
-                    />
-                    <div className="ml-4 text-gray-700">Feature 3</div>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="relative group">
-              <button className="text-gray-700 hover:text-gray-900 focus:outline-none flex items-center">
-                Resume
-                <FaAngleDown className="ml-2 group-hover:hidden" />
-                <FaAngleUp className="ml-2 hidden group-hover:block" />
-              </button>
-              <div className="absolute left-0 mt-2 w-64 bg-white shadow-lg hidden group-hover:block">
-                <div className="p-4">
-                  <a
-                    href="#"
-                    className="flex items-center p-2 hover:bg-gray-100"
-                  >
-                    <img
-                      src="https://via.placeholder.com/100"
-                      alt="Feature 1"
-                      className="w-16 h-16 object-cover"
-                    />
-                    <div className="ml-4 text-gray-700">Feature 1</div>
-                  </a>
-                  <a
-                    href="#"
-                    className="flex items-center p-2 mt-2 hover:bg-gray-100"
-                  >
-                    <img
-                      src="https://via.placeholder.com/100"
-                      alt="Feature 2"
-                      className="w-16 h-16 object-cover"
-                    />
-                    <div className="ml-4 text-gray-700">Feature 2</div>
-                  </a>
-                  <a
-                    href="#"
-                    className="flex items-center p-2 mt-2 hover:bg-gray-100"
-                  >
-                    <img
-                      src="https://via.placeholder.com/100"
-                      alt="Feature 3"
-                      className="w-16 h-16 object-cover"
-                    />
-                    <div className="ml-4 text-gray-700">Feature 3</div>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="relative group">
-              <button className="text-gray-700 hover:text-gray-900 focus:outline-none flex items-center">
-                Solutions
-                <FaAngleDown className="ml-2 group-hover:hidden" />
-                <FaAngleUp className="ml-2 hidden group-hover:block" />
-              </button>
-              <div className="absolute left-0 mt-2 w-64 bg-white shadow-lg hidden group-hover:block">
-                <div className="p-4">
-                  <a
-                    href="#"
-                    className="flex items-center p-2 hover:bg-gray-100"
-                  >
-                    <img
-                      src="https://via.placeholder.com/100"
-                      alt="Feature 1"
-                      className="w-16 h-16 object-cover"
-                    />
-                    <div className="ml-4 text-gray-700">Feature 1</div>
-                  </a>
-                  <a
-                    href="#"
-                    className="flex items-center p-2 mt-2 hover:bg-gray-100"
-                  >
-                    <img
-                      src="https://via.placeholder.com/100"
-                      alt="Feature 2"
-                      className="w-16 h-16 object-cover"
-                    />
-                    <div className="ml-4 text-gray-700">Feature 2</div>
-                  </a>
-                  <a
-                    href="#"
-                    className="flex items-center p-2 mt-2 hover:bg-gray-100"
-                  >
-                    <img
-                      src="https://via.placeholder.com/100"
-                      alt="Feature 3"
-                      className="w-16 h-16 object-cover"
-                    />
-                    <div className="ml-4 text-gray-700">Feature 3</div>
-                  </a>
-                </div>
-              </div>
-            </div>
+              )
+            )}
             <a href="#" className="text-gray-700 hover:text-gray-900">
               About
             </a>
@@ -215,9 +76,10 @@ const Navbar = () => {
           </div>
         </div>
         <div className="flex items-center space-x-4 mr-8 lg:mr-20">
-          <button 
-          onClick={toggleLoginForm}
-          className="text-gray-700 font-semibold py-2 px-6 hover:gray-900 focus:outline-none focus:ring-0 focus:ring-gray-700 focus:ring-opacity-50 transition duration-300 ease-in-out h-10">
+          <button
+            onClick={toggleLoginForm}
+            className="text-gray-700 font-semibold py-2 px-6 hover:gray-900 focus:outline-none focus:ring-0 focus:ring-gray-700 focus:ring-opacity-50 transition duration-300 ease-in-out h-10"
+          >
             Login
           </button>
           <FaEnvelope className="text-gray-700 hover:text-gray-900 cursor-pointer w-6 h-6 lg:w-14" />
@@ -285,222 +147,63 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed inset-0 flex flex-col bg-white shadow-lg z-50 ${
-          isOpen ? "block" : "hidden"
-        }`}
+        className={`fixed inset-0 flex flex-col bg-white shadow-lg z-40 transform ${
+          isOpen ? "translate-x-0" : "translate-x-full"
+        } transition-transform duration-300 ease-in-out`}
       >
-        <button
-          className="text-gray-700 hover:text-gray-900 focus:outline-none p-4"
-          onClick={toggleMenu}
-        >
-          <svg
-            className="h-6 w-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M6 18L18 6M6 6l12 12"
-            ></path>
-          </svg>
-        </button>
-        <div className="p-4">
-          <div className="relative group mb-4">
-            <button
-              className="w-full text-gray-700 hover:text-gray-900 flex items-center justify-between"
-              onClick={() =>
-                document.getElementById("org-menu").classList.toggle("hidden")
-              }
-            >
-              ORGANIZATIONS
-              <FaAngleDown className="ml-2" />
-            </button>
-            <div id="org-menu" className="hidden bg-white shadow-lg">
-              <a href="#" className="flex items-center p-2 hover:bg-gray-100">
-                <img
-                  src="https://via.placeholder.com/100"
-                  alt="POST A JOB"
-                  className="w-16 h-16 object-cover"
-                />
-                <div className="ml-4 text-gray-700">POST A JOB</div>
-              </a>
-              <a
-                href="#"
-                className="flex items-center p-2 mt-2 hover:bg-gray-100"
-              >
-                <img
-                  src="https://via.placeholder.com/100"
-                  alt="FIND NEW TALENTS"
-                  className="w-16 h-16 object-cover"
-                />
-                <div className="ml-4 text-gray-700">FIND NEW TALENTS</div>
-              </a>
-              <a
-                href="#"
-                className="flex items-center p-2 mt-2 hover:bg-gray-100"
-              >
-                <img
-                  src="https://via.placeholder.com/100"
-                  alt="Feature 3"
-                  className="w-16 h-16 object-cover"
-                />
-                <div className="ml-4 text-gray-700">Feature 3</div>
-              </a>
-            </div>
+        <div className="flex justify-between items-center p-4">
+          <div className="text-2xl font-bold text-gray-900">
+            <a href="/" className="flex items-center">
+              <img src="./logo-black.png" alt="Logo" className="w-24" />
+            </a>
           </div>
-          <div className="relative group mb-4">
-            <button
-              className="w-full text-gray-700 hover:text-gray-900 flex items-center justify-between"
-              onClick={() =>
-                document.getElementById("ind-menu").classList.toggle("hidden")
-              }
+          <button onClick={toggleMenu} className="text-gray-700">
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              INDIVIDUALS
-              <FaAngleDown className="ml-2" />
-            </button>
-            <div id="ind-menu" className="hidden bg-white shadow-lg">
-              <a href="#" className="flex items-center p-2 hover:bg-gray-100">
-                <img
-                  src="https://via.placeholder.com/100"
-                  alt="Feature 1"
-                  className="w-16 h-16 object-cover"
-                />
-                <div className="ml-4 text-gray-700">Feature 1</div>
-              </a>
-              <a
-                href="#"
-                className="flex items-center p-2 mt-2 hover:bg-gray-100"
-              >
-                <img
-                  src="https://via.placeholder.com/100"
-                  alt="Feature 2"
-                  className="w-16 h-16 object-cover"
-                />
-                <div className="ml-4 text-gray-700">Feature 2</div>
-              </a>
-              <a
-                href="#"
-                className="flex items-center p-2 mt-2 hover:bg-gray-100"
-              >
-                <img
-                  src="https://via.placeholder.com/100"
-                  alt="Feature 3"
-                  className="w-16 h-16 object-cover"
-                />
-                <div className="ml-4 text-gray-700">Feature 3</div>
-              </a>
-            </div>
-          </div>
-          <div className="relative group mb-4">
-            <button
-              className="w-full text-gray-700 hover:text-gray-900 flex items-center justify-between"
-              onClick={() =>
-                document
-                  .getElementById("resume-menu")
-                  .classList.toggle("hidden")
-              }
-            >
-              RESUME
-              <FaAngleDown className="ml-2" />
-            </button>
-            <div id="resume-menu" className="hidden bg-white shadow-lg">
-              <a href="#" className="flex items-center p-2 hover:bg-gray-100">
-                <img
-                  src="https://via.placeholder.com/100"
-                  alt="Feature 1"
-                  className="w-16 h-16 object-cover"
-                />
-                <div className="ml-4 text-gray-700">Feature 1</div>
-              </a>
-              <a
-                href="#"
-                className="flex items-center p-2 mt-2 hover:bg-gray-100"
-              >
-                <img
-                  src="https://via.placeholder.com/100"
-                  alt="Feature 2"
-                  className="w-16 h-16 object-cover"
-                />
-                <div className="ml-4 text-gray-700">Feature 2</div>
-              </a>
-              <a
-                href="#"
-                className="flex items-center p-2 mt-2 hover:bg-gray-100"
-              >
-                <img
-                  src="https://via.placeholder.com/100"
-                  alt="Feature 3"
-                  className="w-16 h-16 object-cover"
-                />
-                <div className="ml-4 text-gray-700">Feature 3</div>
-              </a>
-            </div>
-          </div>
-          <div className="relative group mb-4">
-            <button
-              className="w-full text-gray-700 hover:text-gray-900 flex items-center justify-between"
-              onClick={() =>
-                document
-                  .getElementById("solutions-menu")
-                  .classList.toggle("hidden")
-              }
-            >
-              SOLUTIONS
-              <FaAngleDown className="ml-2" />
-            </button>
-            <div id="solutions-menu" className="hidden bg-white shadow-lg">
-              <a href="#" className="flex items-center p-2 hover:bg-gray-100">
-                <img
-                  src="https://via.placeholder.com/100"
-                  alt="Feature 1"
-                  className="w-16 h-16 object-cover"
-                />
-                <div className="ml-4 text-gray-700">Feature 1</div>
-              </a>
-              <a
-                href="#"
-                className="flex items-center p-2 mt-2 hover:bg-gray-100"
-              >
-                <img
-                  src="https://via.placeholder.com/100"
-                  alt="Feature 2"
-                  className="w-16 h-16 object-cover"
-                />
-                <div className="ml-4 text-gray-700">Feature 2</div>
-              </a>
-              <a
-                href="#"
-                className="flex items-center p-2 mt-2 hover:bg-gray-100"
-              >
-                <img
-                  src="https://via.placeholder.com/100"
-                  alt="Feature 3"
-                  className="w-16 h-16 object-cover"
-                />
-                <div className="ml-4 text-gray-700">Feature 3</div>
-              </a>
-            </div>
-          </div>
-          <a
-            href="#"
-            className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-          >
-            ABOUT US
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M6 18L18 6M6 6l12 12"
+              ></path>
+            </svg>
+          </button>
+        </div>
+        <div className="flex flex-col p-4 space-y-4">
+          {["organizations", "individuals", "resume", "solutions"].map(
+            (menuKey) => (
+              <div key={menuKey} className="relative">
+                <button
+                  onClick={() => handleMenuClick(menuKey)}
+                  className="text-gray-700 hover:text-gray-900 flex items-center justify-between w-full"
+                >
+                  {menuKey.charAt(0).toUpperCase() + menuKey.slice(1)}
+                  {activeMenu === menuKey ? <FaAngleUp /> : <FaAngleDown />}
+                </button>
+                {activeMenu === menuKey && (
+                  <div className="flex flex-col mt-2 bg-white shadow-lg">
+                    {renderMenuItems(menuKey)}
+                  </div>
+                )}
+              </div>
+            )
+          )}
+          <a href="#" className="text-gray-700 hover:text-gray-900">
+            About
           </a>
-          <a
-            href="#"
-            className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-          >
-            CONTACT US
+          <a href="#" className="text-gray-700 hover:text-gray-900">
+            Contact
           </a>
         </div>
       </div>
-      {/* Login Form Modal */}
-      {isLoginFormOpen && <Login onClose={toggleLoginForm} />} {/* Include LoginForm here */}
+
+      {/* Login Popup */}
+      {isLoginFormOpen && <Login onClose={toggleLoginForm} />}
     </header>
   );
 };

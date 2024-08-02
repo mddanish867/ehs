@@ -1,0 +1,71 @@
+{
+    "organizations": [
+      {
+        "title": "Post new jobs",
+        "image": "https://via.placeholder.com/100",
+        "link": "#"
+      },
+      {
+        "title": "Find new talents",
+        "image": "https://via.placeholder.com/100",
+        "link": "#"
+      },
+      {
+        "title": "Feature 3",
+        "image": "https://via.placeholder.com/100",
+        "link": "#"
+      }
+    ],
+    "individuals": [
+      {
+        "title": "Feature 1",
+        "image": "https://via.placeholder.com/100",
+        "link": "#"
+      },
+      {
+        "title": "Feature 2",
+        "image": "https://via.placeholder.com/100",
+        "link": "#"
+      },
+      {
+        "title": "Feature 3",
+        "image": "https://via.placeholder.com/100",
+        "link": "#"
+      }
+    ],
+    "resume": [
+      {
+        "title": "Feature 1",
+        "image": "https://via.placeholder.com/100",
+        "link": "#"
+      },
+      {
+        "title": "Feature 2",
+        "image": "https://via.placeholder.com/100",
+        "link": "#"
+      },
+      {
+        "title": "Feature 3",
+        "image": "https://via.placeholder.com/100",
+        "link": "#"
+      }
+    ],
+    "solutions": [
+      {
+        "title": "Feature 1",
+        "image": "https://via.placeholder.com/100",
+        "link": "#"
+      },
+      {
+        "title": "Feature 2",
+        "image": "https://via.placeholder.com/100",
+        "link": "#"
+      },
+      {
+        "title": "Feature 3",
+        "image": "https://via.placeholder.com/100",
+        "link": "#"
+      }
+    ]
+  }
+  

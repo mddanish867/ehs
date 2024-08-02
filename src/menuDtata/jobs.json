@@ -1,0 +1,93 @@
+[
+    {
+      "id": 1,
+      "title": "Software Engineer",
+      "company": "Amazon",
+      "location": "New York",
+      "type": "Full-time",
+      "description": "Develop and maintain software solutions.\nCollaborate with cross-functional teams.\nParticipate in code reviews.",
+      "companyType": "Tech",
+      "postedDate": "2024-07-27T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "title": "Product Manager",
+      "company": "Google",
+      "location": "San Francisco",
+      "type": "Part-time",
+      "description": "Manage product lifecycle from ideation to launch.\nConduct market research.\nDefine product vision and strategy.",
+      "companyType": "Tech",
+      "postedDate": "2024-07-30T00:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "title": "Data Scientist",
+      "company": "Microsoft",
+      "location": "Remote",
+      "type": "Contract",
+      "description": "Analyze data and build predictive models.\nDevelop data pipelines.\nPresent insights to stakeholders.",
+      "companyType": "Tech",
+      "postedDate": "2024-07-28T00:00:00.000Z"
+    },
+    {
+        "id": 4,
+        "title": "Software Engineer",
+        "company": "Amazon",
+        "location": "New York",
+        "type": "Full-time",
+        "description": "Develop and maintain software solutions.\nCollaborate with cross-functional teams.\nParticipate in code reviews.",
+        "companyType": "Tech",
+        "postedDate": "2024-07-27T00:00:00.000Z"
+      },
+      {
+        "id": 5,
+        "title": "Product Manager",
+        "company": "Google",
+        "location": "San Francisco",
+        "type": "Part-time",
+        "description": "Manage product lifecycle from ideation to launch.\nConduct market research.\nDefine product vision and strategy.",
+        "companyType": "Tech",
+        "postedDate": "2024-07-30T00:00:00.000Z"
+      },
+      {
+        "id": 6,
+        "title": "Data Scientist",
+        "company": "Microsoft",
+        "location": "Remote",
+        "type": "Contract",
+        "description": "Analyze data and build predictive models.\nDevelop data pipelines.\nPresent insights to stakeholders.",
+        "companyType": "Tech",
+        "postedDate": "2024-07-28T00:00:00.000Z"
+      },
+      {
+        "id": 7,
+        "title": "Software Engineer",
+        "company": "Amazon",
+        "location": "New York",
+        "type": "Full-time",
+        "description": "Develop and maintain software solutions.\nCollaborate with cross-functional teams.\nParticipate in code reviews.",
+        "companyType": "Tech",
+        "postedDate": "2024-07-27T00:00:00.000Z"
+      },
+      {
+        "id": 8,
+        "title": "Product Manager",
+        "company": "Google",
+        "location": "San Francisco",
+        "type": "Part-time",
+        "description": "Manage product lifecycle from ideation to launch.\nConduct market research.\nDefine product vision and strategy.",
+        "companyType": "Tech",
+        "postedDate": "2024-07-30T00:00:00.000Z"
+      },
+      {
+        "id": 9,
+        "title": "Data Scientist",
+        "company": "Microsoft",
+        "location": "Remote",
+        "type": "Contract",
+        "description": "Analyze data and build predictive models.\nDevelop data pipelines.\nPresent insights to stakeholders.",
+        "companyType": "Tech",
+        "postedDate": "2024-07-28T00:00:00.000Z"
+      }
+  ]
+  
