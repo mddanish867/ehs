@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import jobsData from "../menuDtata/jobs.json";
+import {
+  FaLinkedin,
+  FaBookmark,
+  FaPaperPlane,
+  FaMapMarkerAlt,
+  FaBriefcase,
+} from "react-icons/fa"; // Import icons
 
 const JobDetails = ({ formatDescription, formatDate, selectedJobId }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -42,10 +49,76 @@ const JobDetails = ({ formatDescription, formatDate, selectedJobId }) => {
   return (
     <div className="p-4 rounded bg-white shadow-md">
       <h2 className="text-2xl font-bold">{job.title}</h2>
-      <p className="text-gray-700">{job.company}</p>
-      <p className="text-gray-700">{job.location}</p>
-      <p className="text-gray-500">{job.type}</p>
-      <ul className="list-disc pl-5 mb-2">
+      <p className="text-gray-700 text-xl font-semibold">{job.company}</p>
+      <div className="flex items-center text-gray-500 mt-4">
+        <FaMapMarkerAlt className="mr-2" />
+        <p>{job.location}</p>
+      </div>
+      <div className="flex items-center text-gray-500">
+        <FaBriefcase className="mr-2" />
+        <p>{job.type}</p>
+      </div>
+
+      {/* Buttons in a row for desktop */}
+      <div
+        className={`flex flex-wrap space-x-4 mt-4 ${
+          isMobile ? "hidden" : "block"
+        }`}
+      >
+        <button className="flex items-center space-x-2 lg:text-blue-500 lg:bg-white lg:hover:text-blue-700 bg-gray-600 text-white mb-2 rounded p-3">
+          <FaLinkedin />
+          <span className="hidden sm:inline">Power Edit</span>
+          <span className="inline sm:hidden">Power Edit</span>
+        </button>
+        <button className="flex items-center space-x-2 p-2 text-gray-500 border border-gray-300 hover:border-gray-500 hover:text-gray-700 rounded mb-2">
+          <FaBookmark />
+          <span className="hidden sm:inline">Save Job</span>
+          <span className="inline sm:hidden">Save</span>
+        </button>
+        <button className="flex items-center space-x-2 text-gray-500 hover:text-gray-700 mb-2">
+          <FaPaperPlane />
+          <span className="hidden sm:inline">Apply</span>
+          <span className="inline sm:hidden">Apply</span>
+        </button>
+      </div>
+
+      {/* Buttons in mobile view */}
+      <div
+        className={`flex flex-wrap space-x-4 mt-4 ${
+          isMobile ? "block" : "hidden"
+        }`}
+      >
+        <button className="flex items-center space-x-2 text-blue-500 bg-white hover:text-blue-700 border border-blue-300 hover:border-blue-500 p-2 mb-2 ">
+          <FaLinkedin />
+          <span className="hidden sm:inline">Power Edit</span>
+          <span className="inline sm:hidden">Power Edit</span>
+        </button>
+        <button className="flex items-center space-x-2 p-2 text-gray-500 border border-gray-300 hover:border-gray-500 hover:text-gray-700 rounded mb-2">
+          <FaBookmark />
+          <span className="hidden sm:inline">Save Job</span>
+          <span className="inline sm:hidden">Save</span>
+        </button>
+        
+      </div>
+
+      {/* Fixed bottom button for mobile */}
+      <div
+        className={`fixed bottom-0 left-0 w-full p-4 bg-white border-t border-gray-300 flex justify-center ${
+          isMobile ? "block" : "hidden"
+        }`}
+      >
+        <button className="flex items-center space-x-2 lg:text-blue-500 lg:bg-white lg:hover:text-blue-700 bg-gray-600 text-white mb-2 rounded p-3 w-full">
+          <FaPaperPlane className="ml-28" />
+          <span className="hidden sm:inline">Apply</span>
+          <span className="inline sm:hidden">Apply</span>
+        </button>
+      </div>
+
+      <div className="border-t border-gray-300 mt-4"></div> {/* Horizontal border */}
+      <p className="text-gray-500 mt-6 hidden sm:block">{job.title}</p>
+      <br />
+      <p className="text-gray-500 -mt-5 hidden sm:block">{job.company}</p>
+      <ul className="list-disc pl-5 mb-2 mt-4">
         {descriptionFormatter(job.description)}
       </ul>
       <p className="text-gray-400">
