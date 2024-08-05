@@ -53,7 +53,7 @@ const Navbar = () => {
             </a>
           </div>
           <div className="hidden md:flex space-x-6 ml-6">
-            {["organizations", "individuals", "resume", "solutions"].map(
+            {["organizations", "individuals", "resume", "cover letter", "career support"].map(
               (menuKey) => (
                 <div key={menuKey} className="relative group">
                   <button className="text-gray-700 hover:text-gray-900 focus:outline-none flex items-center">
@@ -61,18 +61,12 @@ const Navbar = () => {
                     <FaAngleDown className="ml-2 group-hover:hidden" />
                     <FaAngleUp className="ml-2 hidden group-hover:block" />
                   </button>
-                  <div className="absolute left-0 mt-2 w-64 bg-white shadow-lg hidden group-hover:block">
+                  <div className="absolute left-0 mt-2 w-96 bg-white shadow-lg hidden group-hover:block">
                     <div className="p-4">{renderMenuItems(menuKey)}</div>
                   </div>
                 </div>
               )
-            )}
-            <a href="#" className="text-gray-700 hover:text-gray-900">
-              About
-            </a>
-            <a href="#" className="text-gray-700 hover:text-gray-900">
-              Contact
-            </a>
+            )}            
           </div>
         </div>
         <div className="flex items-center space-x-4 mr-8 lg:mr-20">
@@ -86,30 +80,30 @@ const Navbar = () => {
           <FaBell className="text-gray-700 hover:text-gray-900 cursor-pointer w-6 h-6 lg:w-14" />
           <div className="relative group">
             <FaUser className="text-gray-700 hover:text-gray-900 cursor-pointer w-6 h-6 lg:w-14" />
-            <div className="absolute right-0 mt-3 w-64 bg-white shadow-lg hidden group-hover:block">
-              <div className="p-4">
+            <div className="absolute right-0 mt-3 w-72 bg-white shadow-lg hidden group-hover:block">
+              <div className="p-8">
                 <div className="flex items-center space-x-2 mt-2">
                   <div className="text-gray-700 font-semibold">
                     mddanish867@gmail.com
                   </div>
                 </div>
-                <div className="flex items-center space-x-2 mt-4">
+                <div className="flex items-center space-x-2 mt-6">
                   <SiGoogledocs className="text-gray-700 w-6 h-6" />
                   <div className="ml-2 text-gray-700">Profile</div>
                 </div>
-                <div className="flex items-center space-x-2 mt-4">
+                <div className="flex items-center space-x-2 mt-6">
                   <FaBookmark className="text-gray-700 w-6 h-6" />
                   <div className="ml-2 text-gray-700">My Jobs</div>
                 </div>
-                <div className="flex items-center space-x-2 mt-4">
+                <div className="flex items-center space-x-2 mt-6">
                   <RiBookmark3Fill className="text-gray-700 w-6 h-6" />
                   <div className="ml-2 text-gray-700">My Reviews</div>
                 </div>
-                <div className="flex items-center space-x-2 mt-4">
+                <div className="flex items-center space-x-2 mt-6">
                   <IoSettingsSharp className="text-gray-700 w-6 h-6" />
                   <div className="ml-2 text-gray-700">Settings</div>
                 </div>
-                <div className="flex items-center space-x-2 mt-4">
+                <div className="flex items-center space-x-2 mt-6">
                   <TbHelpSquareFilled className="text-gray-700 w-6 h-6" />
                   <div className="ml-2 text-gray-700">Help Center</div>
                 </div>
@@ -175,7 +169,7 @@ const Navbar = () => {
           </button>
         </div>
         <div className="flex flex-col p-4 space-y-4">
-          {["organizations", "individuals", "resume", "solutions"].map(
+          {["organizations", "individuals", "resume", "cover letter", "career support"].map(
             (menuKey) => (
               <div key={menuKey} className="relative">
                 <button
@@ -192,13 +186,7 @@ const Navbar = () => {
                 )}
               </div>
             )
-          )}
-          <a href="#" className="text-gray-700 hover:text-gray-900">
-            About
-          </a>
-          <a href="#" className="text-gray-700 hover:text-gray-900">
-            Contact
-          </a>
+          )}          
         </div>
       </div>
 

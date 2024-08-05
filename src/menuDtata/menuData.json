@@ -1,68 +1,131 @@
 {
     "organizations": [
       {
-        "title": "Post new jobs",
+        "title": "Post New Jobs",
         "image": "https://via.placeholder.com/100",
         "link": "#"
       },
       {
-        "title": "Find new talents",
+        "title": "Find New Talents",
         "image": "https://via.placeholder.com/100",
         "link": "#"
       },
       {
-        "title": "Feature 3",
+        "title": "Track Jobs",
+        "image": "https://via.placeholder.com/100",
+        "link": "#"
+      },
+      {
+        "title": "Track Referals",
         "image": "https://via.placeholder.com/100",
         "link": "#"
       }
     ],
     "individuals": [
       {
-        "title": "Feature 1",
+        "title": "Find Jobs",
         "image": "https://via.placeholder.com/100",
         "link": "#"
       },
       {
-        "title": "Feature 2",
+        "title": "Refer Your Friends",
         "image": "https://via.placeholder.com/100",
         "link": "#"
       },
       {
-        "title": "Feature 3",
+        "title": "ATS Resume",
+        "image": "https://via.placeholder.com/100",
+        "link": "#"
+      },
+      {
+        "title": "Resume Tailer",
+        "image": "https://via.placeholder.com/100",
+        "link": "#"
+      },
+      {
+        "title": "Join Our Database",
         "image": "https://via.placeholder.com/100",
         "link": "#"
       }
     ],
     "resume": [
       {
-        "title": "Feature 1",
+        "title": "Resume Scan",
         "image": "https://via.placeholder.com/100",
         "link": "#"
       },
       {
-        "title": "Feature 2",
+        "title": "Resume Bullets Point Generator",
         "image": "https://via.placeholder.com/100",
         "link": "#"
       },
       {
-        "title": "Feature 3",
+        "title": "AI Resume Tools",
+        "image": "https://via.placeholder.com/100",
+        "link": "#"
+      },
+      {
+        "title": "LinkedIn Optimization",
+        "image": "https://via.placeholder.com/100",
+        "link": "#"
+      },
+      {
+        "title": "ATS Resume",
+        "image": "https://via.placeholder.com/100",
+        "link": "#"
+      },
+      {
+        "title": "Resume Tailor",
         "image": "https://via.placeholder.com/100",
         "link": "#"
       }
     ],
-    "solutions": [
+    
+    "cover letter": [
       {
-        "title": "Feature 1",
+        "title": "Cover Letter Generator",
         "image": "https://via.placeholder.com/100",
         "link": "#"
       },
       {
-        "title": "Feature 2",
+        "title": "Cover Letter Templates",
         "image": "https://via.placeholder.com/100",
         "link": "#"
       },
       {
-        "title": "Feature 3",
+        "title": "Cover Letter Farmatter",
+        "image": "https://via.placeholder.com/100",
+        "link": "#"
+      }
+    ],
+    "career support": [
+      {
+        "title": "Interview Prepration",
+        "image": "https://via.placeholder.com/100",
+        "link": "#"
+      },
+      {
+        "title": "Roadmaps",
+        "image": "https://via.placeholder.com/100",
+        "link": "#"
+      },
+      {
+        "title": "Resources",
+        "image": "https://via.placeholder.com/100",
+        "link": "#"
+      },      
+      {
+        "title": "Projects",
+        "image": "https://via.placeholder.com/100",
+        "link": "#"
+      },
+      {
+        "title": "Companies Reviews",
+        "image": "https://via.placeholder.com/100",
+        "link": "#"
+      },
+      {
+        "title": "Salary Guide",
         "image": "https://via.placeholder.com/100",
         "link": "#"
       }
