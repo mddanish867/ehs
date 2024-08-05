@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import JobList from "./JobList";
 import JobDetails from "./JobDetails";
 import jobsData from "../menuDtata/jobs.json";
+import debounce from "lodash.debounce";
+import Loader from "../Loader/Loader";
 
 const JobSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -15,8 +17,13 @@ const JobSearch = () => {
   const [jobs, setJobs] = useState([]);
   const [filteredJobs, setFilteredJobs] = useState([]);
   const [error, setError] = useState("");
-
+  const [searchSuggestions, setSearchSuggestions] = useState([]);
+  const [locationSuggestions, setLocationSuggestions] = useState([]);
+  const [loading, setLoading] = useState(false); // Add loading state
   const navigate = useNavigate();
+
+  const searchInputRef = useRef(null);
+  const locationInputRef = useRef(null);
 
   useEffect(() => {
     setJobs(jobsData);
@@ -33,17 +40,82 @@ const JobSearch = () => {
   }, []);
 
   useEffect(() => {
-    const filtered = jobs.filter((job) => {
-      return (
-        (job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          job.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          job.description.toLowerCase().includes(searchTerm.toLowerCase())) &&
-        job.location.toLowerCase().includes(location.toLowerCase()) &&
-        job.type.toLowerCase().includes(jobType.toLowerCase())
-      );
-    });
-    setFilteredJobs(filtered);
+    const filterJobs = () => {
+      setLoading(true); // Start loading
+
+      if (!searchTerm && !location && !jobType) {
+        setFilteredJobs([]);
+        setShowResults(true);
+        setSelectedJobId(null);
+        setLoading(false); // End loading
+        return;
+      }
+
+      const filtered = jobs.filter((job) => {
+        return (
+          (job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            job.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            job.description.toLowerCase().includes(searchTerm.toLowerCase())) &&
+          job.location.toLowerCase().includes(location.toLowerCase()) &&
+          job.type.toLowerCase().includes(jobType.toLowerCase())
+        );
+      });
+
+      setFilteredJobs(filtered);
+      setShowResults(true);
+      if (filtered.length === 0) {
+        setSelectedJobId(null); // Deselect job if no jobs found
+      } else if (filtered.length > 0) {
+        setSelectedJobId(filtered[0].id); // Select the first job by default
+      }
+      
+      setLoading(false); // End loading
+    };
+
+    const debouncedFilterJobs = debounce(filterJobs, 300);
+    debouncedFilterJobs();
+
+    return () => {
+      debouncedFilterJobs.cancel();
+    };
   }, [searchTerm, location, jobType, jobs]);
+
+  const getSuggestions = (value, data) => {
+    const lowerValue = value.toLowerCase();
+    const suggestions = data.filter(item => item.toLowerCase().includes(lowerValue));
+    // Remove duplicates
+    return [...new Set(suggestions)];
+  };
+
+  const handleSearchTermChange = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    // Clear the error message if the user starts typing
+    if (value.trim() !== "") {
+      setError("");
+      // Update search suggestions
+      setSearchSuggestions(getSuggestions(value, jobs.map(job => job.title)));
+    } else {
+      setSearchSuggestions([]);
+    }
+  };
+
+  const handleLocationChange = (e) => {
+    const value = e.target.value;
+    setLocation(value);
+    // Update location suggestions
+    setLocationSuggestions(getSuggestions(value, jobs.map(job => job.location)));
+  };
+
+  const handleSearchClick = () => {
+    if (searchTerm.trim() === "") {
+      setError("Please enter a keyword.");
+    } else {
+      setError("");
+      setShowResults(true);
+      setCurrentPage(1); // Reset to first page on new search
+    }
+  };
 
   const formatDate = (date) => {
     const now = new Date();
@@ -72,26 +144,32 @@ const JobSearch = () => {
     }
   };
 
-  const handleSearchClick = () => {
-    if (searchTerm.trim() === "") {
-      setError("Please enter a keyword.");
-    } else {
-      setError("");
-      setShowResults(true);
-      setCurrentPage(1); // Reset to first page on new search
-      if (filteredJobs.length > 0) {
-        setSelectedJobId(filteredJobs[0].id); // Select the first job by default
-      }
+  useEffect(() => {
+    // Trigger the filter function when search term changes
+    if (searchTerm.trim() === "" && filteredJobs.length === 0) {
+      setFilteredJobs(jobs);
+      setShowResults(false);
     }
-  };
+  }, [searchTerm]);
 
-  // Clear error when typing starts
-  const handleSearchTermChange = (e) => {
-    setSearchTerm(e.target.value);
-    if (error) {
-      setError("");
-    }
-  };
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        searchInputRef.current &&
+        !searchInputRef.current.contains(event.target) &&
+        locationInputRef.current &&
+        !locationInputRef.current.contains(event.target)
+      ) {
+        setSearchSuggestions([]);
+        setLocationSuggestions([]);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="p-6">
@@ -107,11 +185,11 @@ const JobSearch = () => {
       {/* Filter Section */}
       <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 mb-5 sm:space-x-2 justify-center lg:w-[80%] lg:ml-28 lg:mt-10 lg:mb-16 lg:rounded-full lg:shadow-lg lg:bg-white lg:p-4">
         <div className="flex flex-col sm:flex-row w-full">
-          <div className="relative flex-grow">
+          <div className="relative flex-grow" ref={searchInputRef}>
             <input
               type="text"
               placeholder={error ? "" : "Search by job, company or skills"}
-              className={` w-full flex-grow lg:border-none border p-2 rounded outline-none ${
+              className={`w-full flex-grow lg:border-none border p-2 rounded outline-none ${
                 error ? "border-red-500" : "border-gray-300"
               }`}
               value={searchTerm}
@@ -122,14 +200,48 @@ const JobSearch = () => {
                 {error}
               </div>
             )}
+            {searchSuggestions.length > 0 && (
+              <ul className="absolute top-full left-0 w-full bg-white border border-gray-300 rounded-b-md mt-1 max-h-60 overflow-auto">
+                {searchSuggestions.map((suggestion, index) => (
+                  <li
+                    key={index}
+                    className="p-2 hover:bg-gray-100 cursor-pointer"
+                    onClick={() => {
+                      setSearchTerm(suggestion);
+                      setSearchSuggestions([]);
+                    }}
+                  >
+                    {suggestion}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
-          <input
-            type="text"
-            placeholder="Location"
-            className="flex-grow p-2 rounded lg:border-none border border-gray-300 outline-none mt-1 sm:mt-0"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-          />
+          <div className="relative flex-grow" ref={locationInputRef}>
+            <input
+              type="text"
+              placeholder="Location"
+              className="w-full flex-grow p-2 rounded lg:border-none border border-gray-300 outline-none mt-1 sm:mt-0"
+              value={location}
+              onChange={handleLocationChange}
+            />
+            {locationSuggestions.length > 0 && (
+              <ul className="absolute top-full left-0 w-full bg-white border border-gray-300 rounded-b-md mt-1 max-h-60 overflow-auto">
+                {locationSuggestions.map((suggestion, index) => (
+                  <li
+                    key={index}
+                    className="p-2 hover:bg-gray-100 cursor-pointer"
+                    onClick={() => {
+                      setLocation(suggestion);
+                      setLocationSuggestions([]);
+                    }}
+                  >
+                    {suggestion}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
           <div className="flex-grow">
             <select
               className="w-full p-2 rounded outline-none text-gray-400 bg-white mt-1 sm:mt-0 pr-10 lg:border-none border border-gray-300"
@@ -155,7 +267,12 @@ const JobSearch = () => {
       </div>
 
       {/* Results Section */}
-      {showResults && (
+      {loading && <Loader/>} {/* Show loader when loading */}
+      {!loading && !showResults && <p className="text-center text-gray-500">Please enter search criteria.</p>}
+      {!loading && showResults && filteredJobs.length === 0 && (
+        <p className="text-center text-gray-500 mt-4">No jobs found</p>
+      )}
+      {!loading && showResults && filteredJobs.length > 0 && (
         <div className="flex flex-col sm:flex-row">
           {/* Job List */}
           <div className="w-full lg:w-1/3">

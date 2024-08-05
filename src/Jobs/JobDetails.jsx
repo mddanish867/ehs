@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import jobsData from "../menuDtata/jobs.json";
+import { FcFlashAuto } from "react-icons/fc";
+
 import {
-  FaLinkedin,
   FaBookmark,
   FaPaperPlane,
   FaMapMarkerAlt,
@@ -46,7 +47,7 @@ const JobDetails = ({ formatDescription, formatDate, selectedJobId }) => {
   const dateFormatter =
     formatDate || ((date) => new Date(date).toLocaleDateString());
 
-  return (
+  return (    
     <div className="p-4 rounded bg-white shadow-md">
       <h2 className="text-2xl font-bold">{job.title}</h2>
       <p className="text-gray-700 text-xl font-semibold">{job.company}</p>
@@ -66,7 +67,7 @@ const JobDetails = ({ formatDescription, formatDate, selectedJobId }) => {
         }`}
       >
         <button className="flex items-center space-x-2 lg:text-blue-500 lg:bg-white lg:hover:text-blue-700 bg-gray-600 text-white mb-2 rounded p-3">
-          <FaLinkedin />
+          <FcFlashAuto />
           <span className="hidden sm:inline">Power Edit</span>
           <span className="inline sm:hidden">Power Edit</span>
         </button>
@@ -89,7 +90,7 @@ const JobDetails = ({ formatDescription, formatDate, selectedJobId }) => {
         }`}
       >
         <button className="flex items-center space-x-2 text-blue-500 bg-white hover:text-blue-700 border border-blue-300 hover:border-blue-500 p-2 mb-2 ">
-          <FaLinkedin />
+          <FcFlashAuto />
           <span className="hidden sm:inline">Power Edit</span>
           <span className="inline sm:hidden">Power Edit</span>
         </button>

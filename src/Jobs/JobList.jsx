@@ -38,40 +38,48 @@ const JobList = ({ jobs, formatDescription, formatDate, onJobClick }) => {
         ))}
       </div>
       {/* Pagination */}
-      <div className="flex justify-center mt-4">
-      <nav aria-label="Page navigation">
-        <ul className="inline-flex -space-x-px">
-          <li>
-            <button
-              onClick={() => handlePageChange(currentPage - 1)}
-              className="flex items-center justify-center px-3 py-2 border-none border-gray-300 text-gray-500 rounded-l disabled:opacity-50"
-              disabled={currentPage === 1}
-            >
-              <FaChevronLeft className="text-lg" />
-            </button>
-          </li>
-          {Array.from({ length: totalPages }, (_, index) => (
-            <li key={index}>
-              <button
-                onClick={() => handlePageChange(index + 1)}
-                className={`flex items-center justify-center px-3 py-1 border border-gray-300 text-gray-300 bg-white hover:bg-gray-900 hover:text-white ${currentPage === index + 1 ? 'bg-black text-white' : ''}`}
-              >
-                {index + 1}
-              </button>
-            </li>
-          ))}
-          <li>
-            <button
-              onClick={() => handlePageChange(currentPage + 1)}
-              className="flex items-center justify-center px-3 py-2 border-none border-gray-300 text-gray-500 rounded-r disabled:opacity-50"
-              disabled={currentPage === totalPages}
-            >
-              <FaChevronRight className="text-lg" />
-            </button>
-          </li>
-        </ul>
-      </nav>
-    </div>
+      {currentJobs && (
+        <div className="flex justify-center mt-4">
+          <nav aria-label="Page navigation">
+            <ul className="inline-flex -space-x-px">
+              <li>
+                <button
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  className="flex items-center justify-center px-3 py-2 border-none border-gray-300 text-gray-500 rounded-l disabled:opacity-50"
+                  disabled={currentPage === 1}
+                >
+                  <FaChevronLeft className="text-lg" />
+                </button>
+              </li>
+              {Array.from({ length: totalPages }, (_, index) => (
+                <li key={index} className="list-none">
+                  <button
+                    onClick={() => handlePageChange(index + 1)}
+                    className={`flex items-center justify-center px-3 py-1 border ${
+                      currentPage === index + 1
+                        ? "bg-black text-white border-black"
+                        : "bg-white text-black border-gray-300"
+                    }`}
+                  >
+                    {index + 1}
+                  </button>
+                </li>
+              ))}
+
+              <li>
+                <button
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  className="flex items-center justify-center px-3 py-2 border-none border-gray-300 text-gray-500 rounded-r disabled:opacity-50"
+                  disabled={currentPage === totalPages}
+                >
+                  <FaChevronRight className="text-lg" />
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      )}
+
       {/* Pagination */}
     </div>
   );
