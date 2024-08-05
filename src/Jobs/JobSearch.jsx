@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import JobList from "./JobList";
 import JobDetails from "./JobDetails";
 import jobsData from "../menuDtata/jobs.json";
-import debounce from "lodash.debounce";
 import Loader from "../Loader/Loader";
 
 const JobSearch = () => {
@@ -40,51 +39,54 @@ const JobSearch = () => {
   }, []);
 
   useEffect(() => {
-    const filterJobs = () => {
-      setLoading(true); // Start loading
-
-      if (!searchTerm && !location && !jobType) {
-        setFilteredJobs([]);
-        setShowResults(true);
-        setSelectedJobId(null);
-        setLoading(false); // End loading
-        return;
+    const handleClickOutside = (event) => {
+      if (
+        searchInputRef.current &&
+        !searchInputRef.current.contains(event.target) &&
+        locationInputRef.current &&
+        !locationInputRef.current.contains(event.target)
+      ) {
+        setSearchSuggestions([]);
+        setLocationSuggestions([]);
       }
-
-      const filtered = jobs.filter((job) => {
-        return (
-          (job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            job.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            job.description.toLowerCase().includes(searchTerm.toLowerCase())) &&
-          job.location.toLowerCase().includes(location.toLowerCase()) &&
-          job.type.toLowerCase().includes(jobType.toLowerCase())
-        );
-      });
-
-      setFilteredJobs(filtered);
-      setShowResults(true);
-      if (filtered.length === 0) {
-        setSelectedJobId(null); // Deselect job if no jobs found
-      } else if (filtered.length > 0) {
-        setSelectedJobId(filtered[0].id); // Select the first job by default
-      }
-      
-      setLoading(false); // End loading
     };
 
-    const debouncedFilterJobs = debounce(filterJobs, 300);
-    debouncedFilterJobs();
-
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      debouncedFilterJobs.cancel();
+      document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [searchTerm, location, jobType, jobs]);
+  }, []);
 
-  const getSuggestions = (value, data) => {
-    const lowerValue = value.toLowerCase();
-    const suggestions = data.filter(item => item.toLowerCase().includes(lowerValue));
-    // Remove duplicates
-    return [...new Set(suggestions)];
+  const filterJobs = () => {
+    setLoading(true); // Start loading
+
+    if (!searchTerm && !location && !jobType) {
+      setFilteredJobs([]);
+      setShowResults(true);
+      setSelectedJobId(null);
+      setLoading(false); // End loading
+      return;
+    }
+
+    const filtered = jobs.filter((job) => {
+      return (
+        (job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          job.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          job.description.toLowerCase().includes(searchTerm.toLowerCase())) &&
+        job.location.toLowerCase().includes(location.toLowerCase()) &&
+        job.type.toLowerCase().includes(jobType.toLowerCase())
+      );
+    });
+
+    setFilteredJobs(filtered);
+    setShowResults(true);
+    if (filtered.length === 0) {
+      setSelectedJobId(null); // Deselect job if no jobs found
+    } else if (filtered.length > 0) {
+      setSelectedJobId(filtered[0].id); // Select the first job by default
+    }
+    
+    setLoading(false); // End loading
   };
 
   const handleSearchTermChange = (e) => {
@@ -112,7 +114,7 @@ const JobSearch = () => {
       setError("Please enter a keyword.");
     } else {
       setError("");
-      setShowResults(true);
+      filterJobs(); // Filter jobs when search button is clicked
       setCurrentPage(1); // Reset to first page on new search
     }
   };
@@ -144,32 +146,12 @@ const JobSearch = () => {
     }
   };
 
-  useEffect(() => {
-    // Trigger the filter function when search term changes
-    if (searchTerm.trim() === "" && filteredJobs.length === 0) {
-      setFilteredJobs(jobs);
-      setShowResults(false);
-    }
-  }, [searchTerm]);
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        searchInputRef.current &&
-        !searchInputRef.current.contains(event.target) &&
-        locationInputRef.current &&
-        !locationInputRef.current.contains(event.target)
-      ) {
-        setSearchSuggestions([]);
-        setLocationSuggestions([]);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  const getSuggestions = (value, data) => {
+    const lowerValue = value.toLowerCase();
+    const suggestions = data.filter(item => item.toLowerCase().includes(lowerValue));
+    // Remove duplicates
+    return [...new Set(suggestions)];
+  };
 
   return (
     <div className="p-6">
