@@ -180,7 +180,7 @@ const JobSearch = () => {
     <div className="p-6">
       {/* Header */}
       <h1 className="font-bold text-4xl mt-4 lg:text-5xl lg:mt-10 sm:text-3xl sm:mt-6 sm:ml-4 sm:text-center">
-        Find your dream <br className="block sm:hidden" /> employer{" "}
+        Find your dream <br className="block sm:hidden" /> employer
         <br className="block sm:hidden" /> now
       </h1>
 
@@ -197,7 +197,7 @@ const JobSearch = () => {
               type="text"
               name="searchTerm"
               placeholder={status.error ? "" : "Search by job, company or skills"}
-              className={`w-full flex-grow lg:border-none border p-2 rounded outline-none ${
+              className={`w-full flex-grow lg:border-none border p-2 rounded outline-none lg:bg-white ${
                 status.error ? "border-red-500" : "border-gray-300"
               }`}
               value={filters.searchTerm}
@@ -231,7 +231,7 @@ const JobSearch = () => {
               type="text"
               name="location"
               placeholder="Location"
-              className="w-full flex-grow p-2 rounded lg:border-none border border-gray-300 outline-none mt-1 sm:mt-0"
+              className="w-full flex-grow p-2 rounded lg:border-l-1 lg:border-t-0 lg:border-b-0 lg:border-r-1 border border-gray-300 outline-none mt-1 sm:mt-0"
               value={filters.location}
               onChange={handleFilterChange}
             />
@@ -271,7 +271,7 @@ const JobSearch = () => {
 
           {/* Search Button */}
           <button
-            className="p-2 lg:w-24 bg-gray-700 text-white lg:rounded-full mt-1 sm:mt-0 sm:rounded"
+            className="p-2 lg:w-24 bg-blue-500 text-white lg:rounded-full mt-1 sm:mt-0 rounded"
             onClick={handleSearchClick}
           >
             Search

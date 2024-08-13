@@ -13,11 +13,13 @@ import { IoSettingsSharp } from "react-icons/io5";
 import { TbHelpSquareFilled } from "react-icons/tb";
 import Login from "../Authentication/Login";
 import menuData from "../menuDtata/menuData.json"; // Import the JSON data
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoginFormOpen, setIsLoginFormOpen] = useState(false); // State for login form
   const [activeMenu, setActiveMenu] = useState(null); // Track the currently open menu in mobile view
+  const navigate = useNavigate();
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const toggleLoginForm = () => setIsLoginFormOpen(!isLoginFormOpen); // Toggle login form
@@ -25,6 +27,12 @@ const Navbar = () => {
   const handleMenuClick = (menuKey) => {
     setActiveMenu(activeMenu === menuKey ? null : menuKey);
   };
+
+  const handleRegisterRedirect = () => {
+    navigate('/register');
+    //onClose(); // Close the login popup
+  };
+
 
   const renderMenuItems = (menuKey) => {
     return menuData[menuKey].map((item, index) => (
@@ -72,14 +80,20 @@ const Navbar = () => {
         <div className="flex items-center space-x-4 mr-8 lg:mr-20">
           <button
             onClick={toggleLoginForm}
-            className="text-gray-700 font-semibold py-2 px-6 hover:gray-900 focus:outline-none focus:ring-0 focus:ring-gray-700 focus:ring-opacity-50 transition duration-300 ease-in-out h-10"
+            className="text-blue-500 border border-blue-500 rounded-full font-semibold py-2 px-6 hover:bg-blue-500 hover:text-white text-center focus:outline-none focus:ring-0 focus:ring-blue-700 focus:ring-opacity-50 transition duration-300 ease-in-out h-10"
           >
             Login
           </button>
-          <FaEnvelope className="text-gray-700 hover:text-gray-900 cursor-pointer w-6 h-6 lg:w-14" />
-          <FaBell className="text-gray-700 hover:text-gray-900 cursor-pointer w-6 h-6 lg:w-14" />
+          <button
+            onClick={handleRegisterRedirect}
+            className="text-white bg-orange-600 rounded-full font-semibold py-2 px-6 hover:bg-white hover:text-orange-600 hover:border hover:border-orange-600 text-center focus:outline-none focus:ring-0 focus:ring-orange-600 focus:ring-opacity-50 transition duration-300 ease-in-out h-10"
+          >
+            Register
+          </button>
+          <FaEnvelope className="text-blue-500 hover:text-blue-600 cursor-pointer w-6 h-6 lg:w-14" />
+          <FaBell className="text-blue-500 hover:text-blue-600 cursor-pointer w-6 h-6 lg:w-14" />
           <div className="relative group">
-            <FaUser className="text-gray-700 hover:text-gray-900 cursor-pointer w-6 h-6 lg:w-14" />
+            <FaUser className="text-blue-500 hover:text-blue-600 cursor-pointer w-6 h-6 lg:w-14" />
             <div className="absolute right-0 mt-3 w-72 bg-white shadow-lg hidden group-hover:block">
               <div className="p-8">
                 <div className="flex items-center space-x-2 mt-2">

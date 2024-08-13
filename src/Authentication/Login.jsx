@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { FaGoogle, FaWhatsapp } from 'react-icons/fa';
+import { FaLinkedin  } from 'react-icons/fa';
+import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from 'react-router-dom';
 
 const Login = ({ onClose }) => {
@@ -102,7 +103,7 @@ const Login = ({ onClose }) => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className={`w-full px-3 py-2 border rounded pl-3 ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
+                className={`w-full px-3 py-2 border rounded focus:outline-blue-500 pl-3 ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
                 placeholder="Enter your email"
                 required
               />
@@ -120,7 +121,7 @@ const Login = ({ onClose }) => {
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                className={`w-full px-3 py-2 border rounded pl-3 ${errors.password ? 'border-red-500' : 'border-gray-300'}`}
+                className={`w-full px-3 py-2 border focus:outline-blue-500  rounded pl-3 ${errors.password ? 'border-red-500' : 'border-gray-300'}`}
                 placeholder="Enter your password"
                 required
               />
@@ -152,7 +153,7 @@ const Login = ({ onClose }) => {
 
             <button
               type="submit"
-              className="w-full bg-gray-700 text-white py-2 rounded-lg hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-300"
+              className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-gray-300"
             >
               Login
             </button>
@@ -160,24 +161,24 @@ const Login = ({ onClose }) => {
 
           <div className="flex items-center justify-between my-6">
             <div className="w-full border-t border-gray-300"></div>
-            <span className="text-gray-600 mx-4">or</span>
+            <span className="text-gray-600 mx-4">OR</span>
             <div className="w-full border-t border-gray-300"></div>
           </div>
 
           <div className="flex flex-col gap-4">
             <button
               onClick={handleGoogleLogin}
-              className="w-full flex items-center justify-center bg-gray-700 text-white py-2 rounded-lg hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-300"
+              className="w-full flex items-center justify-center bg-white text-blue-500 py-2 rounded-lg border border-blue-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300"
             >
-              <FaGoogle className="w-5 h-5 mr-2" />
+              <FcGoogle className="w-5 h-5 mr-2" />
               Login with Google
             </button>
 
             <button
               onClick={handleWhatsAppLogin}
-              className="w-full flex items-center justify-center bg-gray-700 text-white py-2 rounded-lg hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-300"
+              className="w-full flex items-center justify-center bg-white text-blue-500 py-2 rounded-lg border border-blue-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300"
             >
-              <FaWhatsapp className="w-5 h-5 mr-2" />
+              <FaLinkedin className="w-5 h-5 mr-2" />
               Login with WhatsApp
             </button>
           </div>

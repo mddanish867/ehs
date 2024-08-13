@@ -66,17 +66,17 @@ const JobDetails = ({ formatDescription, formatDate, selectedJobId }) => {
           isMobile ? "hidden" : "block"
         }`}
       >
-        <button className="flex items-center space-x-2 lg:text-blue-500 lg:bg-white lg:hover:text-blue-700 bg-gray-600 text-white mb-2 rounded p-3">
+        <button className="flex items-center space-x-2 lg:text-white lg:bg-blue-500 lg:hover:text-white bg-blue-600 text-white mb-2 rounded p-3">
           <FcFlashAuto />
           <span className="hidden sm:inline">Power Edit</span>
           <span className="inline sm:hidden">Power Edit</span>
         </button>
-        <button className="flex items-center space-x-2 p-2 text-gray-500 border border-gray-300 hover:border-gray-500 hover:text-gray-700 rounded mb-2">
+        <button className="flex items-center space-x-2 p-2 text-blue-500 border border-blue-500 hover:bg-blue-500 hover:text-white rounded mb-2">
           <FaBookmark />
           <span className="hidden sm:inline">Save Job</span>
           <span className="inline sm:hidden">Save</span>
         </button>
-        <button className="flex items-center space-x-2 text-gray-500 hover:text-gray-700 mb-2">
+        <button className="flex items-center space-x-2 text-blue-500  hover:text-blue-600 mb-2">
           <FaPaperPlane />
           <span className="hidden sm:inline">Apply</span>
           <span className="inline sm:hidden">Apply</span>
@@ -89,12 +89,12 @@ const JobDetails = ({ formatDescription, formatDate, selectedJobId }) => {
           isMobile ? "block" : "hidden"
         }`}
       >
-        <button className="flex items-center space-x-2 text-blue-500 bg-white hover:text-blue-700 border border-blue-300 hover:border-blue-500 p-2 mb-2 ">
+        <button className="flex items-center space-x-2 text-blue-500 bg-white hover:text-white hover:bg-blue-500 border border-blue-300 hover:border-blue-500 p-2 mb-2 ">
           <FcFlashAuto />
           <span className="hidden sm:inline">Power Edit</span>
           <span className="inline sm:hidden">Power Edit</span>
         </button>
-        <button className="flex items-center space-x-2 p-2 text-gray-500 border border-gray-300 hover:border-gray-500 hover:text-gray-700 rounded mb-2">
+        <button className="flex items-center space-x-2 p-2 text-white bg-blue-500 border border-blue-500 hover:border-blue-500 hover:bg-white hover:text-blue-500 rounded mb-2">
           <FaBookmark />
           <span className="hidden sm:inline">Save Job</span>
           <span className="inline sm:hidden">Save</span>
@@ -108,7 +108,7 @@ const JobDetails = ({ formatDescription, formatDate, selectedJobId }) => {
           isMobile ? "block" : "hidden"
         }`}
       >
-        <button className="flex items-center space-x-2 lg:text-blue-500 lg:bg-white lg:hover:text-blue-700 bg-gray-600 text-white mb-2 rounded p-3 w-full">
+        <button className="flex items-center space-x-2 lg:text-blue-500 lg:bg-white lg:hover:text-blue-700 bg-orange-600 text-white mb-2 rounded p-3 w-full">
           <FaPaperPlane className="ml-28" />
           <span className="hidden sm:inline">Apply</span>
           <span className="inline sm:hidden">Apply</span>
