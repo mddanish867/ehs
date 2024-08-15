@@ -3,7 +3,7 @@ import JobSearch from '../Jobs/JobSearch';
 
 const Home = () => {
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-white">
       <JobSearch/>
     </div>
   );
