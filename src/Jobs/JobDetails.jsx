@@ -9,20 +9,14 @@ import {
   FaMapMarkerAlt,
   FaBriefcase,
 } from "react-icons/fa"; // Import icons
+import useIsMobile from '../CustomeHooks/useIsMobile'; // Import the custom hook
 
 const JobDetails = ({ formatDescription, formatDate, selectedJobId }) => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const isMobile = useIsMobile(); // Use the custom hook
   const [job, setJob] = useState(null); // Initialize as null
   const { id } = useParams();
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+ 
 
   useEffect(() => {
     let foundJob;

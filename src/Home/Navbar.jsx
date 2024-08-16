@@ -15,22 +15,14 @@ import Login from "../Authentication/Login";
 import menuData from "../menuDtata/menuData.json"; // Import the JSON data
 import { useNavigate } from "react-router-dom";
 import BottomHeader from "./BottomHeader"; // Import the BottomHeader component
+import useIsMobile from "../CustomeHooks/useIsMobile"; // Import the custom hook
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoginFormOpen, setIsLoginFormOpen] = useState(false); // State for login form
   const [activeMenu, setActiveMenu] = useState(null); // Track the currently open menu in mobile view
   const [showBottomHeader, setShowBottomHeader] = useState(true); // State for showing/hiding BottomHeader
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const isMobile = useIsMobile(); // Use the custom hook
 
   const navigate = useNavigate();
   const toggleMenu = () => setIsOpen(!isOpen);
@@ -45,8 +37,8 @@ const Navbar = () => {
   };
 
   const handleRegisterRedirect = () => {
-    navigate("/register");    
-    if(isMobile){
+    navigate("/register");
+    if (isMobile) {
       setIsOpen(false);
     }
   };
@@ -177,7 +169,7 @@ const Navbar = () => {
                 </div>
                 <div className="border-t mt-4"></div>
                 <a
-                  href="#"
+                  href="/"
                   className="block text-center mt-2 text-sm text-white bg-blue-500 hover:bg-blue-500 rounded-lg p-2"
                 >
                   Sign Out
@@ -305,7 +297,7 @@ const Navbar = () => {
             </div>
           </div> */}
 
-           {/* menus for mobile view*/}
+        {/* menus for mobile view*/}
         <div className="flex flex-col p-4 space-y-4">
           {[
             "organizations",
@@ -333,7 +325,7 @@ const Navbar = () => {
       </div>
 
       {/* Login Popup */}
-      {isLoginFormOpen && <Login onClose={toggleLoginForm}/>}
+      {isLoginFormOpen && <Login onClose={toggleLoginForm} />}
 
       {/* Bottom Header */}
       {showBottomHeader && <BottomHeader toggleLoginForm={toggleLoginForm} />}

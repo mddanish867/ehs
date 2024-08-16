@@ -6,6 +6,7 @@ import JobDetails from "./Jobs/JobDetails";
 import Layout from "./Layout/Layout";
 import Registration from "./Authentication/Registration";
 import Login from "./Authentication/Login";
+import DesktopView from "./Jobs/DesktopView";
 
 function App() {
   const [isLoginOpen, setLoginOpen] = useState(false);
@@ -28,6 +29,7 @@ function App() {
               element={<Registration onLoginClick={openLoginPopup} />}
             />
             <Route path="/" element={<Home />} />
+            <Route path="/desktopsearch" element={<DesktopView />} />
             <Route path="/job/:id" element={<JobDetails />} />
 
             {/* Add other routes here */}
