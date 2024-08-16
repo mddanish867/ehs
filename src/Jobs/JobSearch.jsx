@@ -7,7 +7,8 @@ import DesktopView from "./DesktopView";
 const JobSearch = () => {
   const isMobile = useIsMobile(); // Use the custom hook
 
-  return <div>{isMobile ? <MobileView /> : <DesktopView />}</div>;
+  return <div>
+    {isMobile ? <MobileView /> : <DesktopView />}</div>;
 };
 
 export default JobSearch;

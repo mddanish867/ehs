@@ -176,7 +176,16 @@ const DesktopView = () => {
   };
 
   return (
-    <div>
+    <div className="p-6">
+      {/* Header */}
+      <h1 className="font-bold text-4xl mt-4 lg:text-5xl lg:mt-10 sm:text-3xl sm:mt-6 sm:ml-4 sm:text-center">
+        Find your dream <br className="block sm:hidden" /> employer
+        <br className="block sm:hidden" /> now
+      </h1>
+
+      <p className="mt-6 mb-5 font-semibold text-left sm:text-center sm:ml-4">
+        We are here to make the hiring easy
+      </p>
       {/* Filter Section */}
       <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 mb-5 mt-4 p-4 sm:space-x-2 justify-center lg:w-[80%] lg:ml-28 lg:mt-10 lg:mb-16 lg:rounded-full lg:shadow-lg lg:bg-white lg:p-4">
         <div className="flex flex-col sm:flex-row w-full">
