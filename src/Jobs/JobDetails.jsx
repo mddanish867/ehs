@@ -11,11 +11,30 @@ import {
 import useIsMobile from '../CustomeHooks/useIsMobile'; // Import the custom hook
 
 const JobDetails = ({ formatDescription, formatDate, selectedJobId }) => {
+  const [showBottomHeader, setShowBottomHeader] = useState(true); // State for showing/hiding BottomHeader
+
   const isMobile = useIsMobile(); // Use the custom hook
   const [job, setJob] = useState(null); // Initialize as null
   const { id } = useParams();
 
- 
+   // Scrolling function
+   useEffect(() => {
+    let lastScrollTop = 0;
+    const handleScroll = () => {
+      const currentScrollTop = window.scrollY;
+      if (currentScrollTop > lastScrollTop) {
+        // Scrolling down
+        setShowBottomHeader(false);
+      } else {
+        // Scrolling up
+        setShowBottomHeader(true);
+      }
+      lastScrollTop = currentScrollTop;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     let foundJob;
@@ -96,17 +115,20 @@ const JobDetails = ({ formatDescription, formatDate, selectedJobId }) => {
       </div>
 
       {/* Fixed bottom button for mobile */}
-      <div
-        className={`fixed bottom-0 left-0 w-full p-4 bg-white border-t border-gray-300 flex justify-center ${
-          isMobile ? "block" : "hidden"
-        }`}
-      >
-        <button className="flex items-center space-x-2 lg:text-blue-500 lg:bg-white lg:hover:text-blue-700 bg-orange-600 text-white mb-2 rounded p-3 w-full">
-          <FaPaperPlane className="ml-28" />
-          <span className="hidden sm:inline">Apply</span>
-          <span className="inline sm:hidden">Apply</span>
-        </button>
-      </div>
+      {showBottomHeader && 
+         <div
+         className={`fixed bottom-0 left-0 w-full p-8 rounded-t-2xl bg-white border-t border-gray-300 flex text-center ${
+           isMobile ? "block" : "hidden"
+         }`}
+       >
+         <button className="flex items-center space-x-2 lg:text-blue-500 lg:bg-white lg:hover:text-blue-700 bg-orange-600 text-white mb-2 rounded p-3 w-full">
+           <FaPaperPlane className="ml-28" />
+           <span className="hidden sm:inline">Apply</span>
+           <span className="inline sm:hidden">Apply</span>
+         </button>
+       </div>
+      }
+   
 
       <div className="border-t border-gray-300 mt-4"></div> {/* Horizontal border */}
       <p className="text-gray-500 mt-6 hidden sm:block">{job.title}</p>
