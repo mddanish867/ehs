@@ -21,7 +21,7 @@ const JobList = ({ jobs, formatDescription, formatDate, onJobClick }) => {
   };
 
   return (
-    <div>
+    <div className="p-4">
       <div className="flex flex-col space-y-4">
         {currentJobs.map((job) => (
           <div

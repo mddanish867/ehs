@@ -9,7 +9,7 @@ const Home = () => {
     <div className="min-h-screen bg-white p-6">
       <JobSearch />
       {isMobile && (
-        <div className="text-2xl font-bold text-gray-900 mt-6 ">
+        <div className="text-2xl font-bold text-gray-900 mt-6 items-center">
           <img src="./Illustration.jpg" alt="Logo" className="w-96 h-96" />
         </div>
       )}

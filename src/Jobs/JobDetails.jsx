@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import jobsData from "../menuDtata/jobs.json";
-import { FcFlashAuto } from "react-icons/fc";
-
+import { LiaEditSolid } from "react-icons/lia";
 import {
   FaBookmark,
   FaPaperPlane,
@@ -60,17 +59,17 @@ const JobDetails = ({ formatDescription, formatDate, selectedJobId }) => {
           isMobile ? "hidden" : "block"
         }`}
       >
-        <button className="flex items-center space-x-2 lg:text-white lg:bg-blue-500 lg:hover:text-white bg-blue-600 text-white mb-2 rounded p-3">
-          <FcFlashAuto />
+        <button className="flex items-center font-semibold space-x-2 lg:text-white lg:bg-blue-500 lg:hover:text-white bg-blue-600 text-white mb-2 rounded p-2">
+          <LiaEditSolid  />
           <span className="hidden sm:inline">Power Edit</span>
           <span className="inline sm:hidden">Power Edit</span>
         </button>
-        <button className="flex items-center space-x-2 p-2 text-blue-500 border border-blue-500 hover:bg-blue-500 hover:text-white rounded mb-2">
+        <button className="flex items-center font-semibold space-x-2 p-2 text-blue-500 border border-blue-500 hover:bg-blue-500 hover:text-white rounded mb-2">
           <FaBookmark />
           <span className="hidden sm:inline">Save Job</span>
           <span className="inline sm:hidden">Save</span>
         </button>
-        <button className="flex items-center space-x-2 text-blue-500  hover:text-blue-600 mb-2">
+        <button className="flex items-center font-semibold space-x-2 text-blue-500  hover:text-blue-600 mb-2">
           <FaPaperPlane />
           <span className="hidden sm:inline">Apply</span>
           <span className="inline sm:hidden">Apply</span>
@@ -84,7 +83,7 @@ const JobDetails = ({ formatDescription, formatDate, selectedJobId }) => {
         }`}
       >
         <button className="flex items-center space-x-2 text-blue-500 bg-white hover:text-white hover:bg-blue-500 border border-blue-300 hover:border-blue-500 p-2 mb-2 ">
-          <FcFlashAuto />
+          <LiaEditSolid />
           <span className="hidden sm:inline">Power Edit</span>
           <span className="inline sm:hidden">Power Edit</span>
         </button>

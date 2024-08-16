@@ -16,6 +16,8 @@ import menuData from "../menuDtata/menuData.json"; // Import the JSON data
 import { useNavigate } from "react-router-dom";
 import BottomHeader from "./BottomHeader"; // Import the BottomHeader component
 import useIsMobile from "../CustomeHooks/useIsMobile"; // Import the custom hook
+import { useLocation } from "react-router-dom";
+
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,6 +25,8 @@ const Navbar = () => {
   const [activeMenu, setActiveMenu] = useState(null); // Track the currently open menu in mobile view
   const [showBottomHeader, setShowBottomHeader] = useState(true); // State for showing/hiding BottomHeader
   const isMobile = useIsMobile(); // Use the custom hook
+  const location = useLocation();
+  const isHomepage = location.pathname === "/"; // Check if the current path is the homepage
 
   const navigate = useNavigate();
   const toggleMenu = () => setIsOpen(!isOpen);
@@ -131,7 +135,7 @@ const Navbar = () => {
 
           <div className="hidden md:flex relative group">
             <FaUser className="text-blue-500 hover:text-blue-600 cursor-pointer w-6 h-6 lg:w-14" />
-            <div className="absolute right-0 mt-3 w-72 bg-white shadow-lg hidden group-hover:block">
+            <div className="absolute -right-16 mt-8 w-72 bg-white shadow-lg hidden group-hover:block">
               <div className="p-8">
                 <div className="flex items-center space-x-2 mt-2">
                   <div className="text-gray-700 font-semibold">
@@ -328,7 +332,8 @@ const Navbar = () => {
       {isLoginFormOpen && <Login onClose={toggleLoginForm} />}
 
       {/* Bottom Header */}
-      {showBottomHeader && <BottomHeader toggleLoginForm={toggleLoginForm} />}
+      
+      {showBottomHeader && isHomepage && <BottomHeader toggleLoginForm={toggleLoginForm} />}
     </header>
   );
 };
