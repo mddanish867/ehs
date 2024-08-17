@@ -11,7 +11,7 @@ function MobileView() {
   };
 
   return (
-    <div className="mt-5 flex items-center border rounded-full shadow-lg border-gray-300">
+    <div className="mt-5 flex items-center border rounded-full shadow-blue-400 shadow-lg border-gray-300">
       <FaSearch className="ml-4 text-gray-500" />
       <input
         type="text"

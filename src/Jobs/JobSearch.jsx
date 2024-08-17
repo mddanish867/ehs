@@ -8,7 +8,8 @@ const JobSearch = () => {
   const isMobile = useIsMobile(); // Use the custom hook
 
   return <div>
-    {isMobile ? <MobileView /> : <DesktopView />}</div>;
+    {isMobile ? <MobileView /> : <DesktopView />}
+    </div>;
 };
 
 export default JobSearch;
