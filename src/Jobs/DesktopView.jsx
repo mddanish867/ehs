@@ -150,43 +150,35 @@ const DesktopView = () => {
 
   // Format job description into a list format
   const formatDescription = (description, maxPoints) => {
-    const points = description.split('.'); // Assuming each bullet point ends with a period
-    return points.slice(0, maxPoints).map((point, index) => (
-      <li key={index}>{point.trim()}</li>
-    ));
+    const points = description.split("."); // Assuming each bullet point ends with a period
+    return points
+      .slice(0, maxPoints)
+      .map((point, index) => <li key={index}>{point.trim()}</li>);
   };
 
   // Format job benefits into a list format
   const formatBenefits = (benefits, maxPoints) => {
-    const points = benefits.split('.'); 
-    return points.slice(0, maxPoints).map((point, index) => (
-      <li key={index}>{point.trim()}</li>
-    ));
+    const points = benefits.split(".");
+    return points
+      .slice(0, maxPoints)
+      .map((point, index) => <li key={index}>{point.trim()}</li>);
   };
-  
+
   // Format job education into a list format
   const formatEducations = (education, maxPoints) => {
-    const points = education.split('.'); 
-    return points.slice(0, maxPoints).map((point, index) => (
-      <li key={index}>{point.trim()}</li>
-    ));
+    const points = education.split(".");
+    return points
+      .slice(0, maxPoints)
+      .map((point, index) => <li key={index}>{point.trim()}</li>);
   };
 
   const formatSkills = (skill, maxPoints) => {
-    const points = skill.split('.'); 
-    return points.slice(0, maxPoints).map((point, index) => (
-      <li key={index}>{point.trim()}</li>
-    ));
+    const points = skill.split(".");
+    return points
+      .slice(0, maxPoints)
+      .map((point, index) => <li key={index}>{point.trim()}</li>);
   };
 
-  const formatCompany = (company, maxPoints) => {
-    const points = company.split('\n'); 
-    return points.slice(0, maxPoints).map((point, index) => (
-      <li key={index}>{point.trim()}</li>
-    ));
-  };
-
-  
   // Handle job click for either navigation or pagination update
   const handleJobClick = (jobId) => {
     if (isMobile) {
@@ -212,7 +204,6 @@ const DesktopView = () => {
         Find your dream <br className="block sm:hidden" /> employer
         <br className="block sm:hidden" /> now
       </h1>
-
       <p className="mt-6 mb-5 font-semibold text-left sm:text-center ml-4">
         We are here to make the hiring easy
       </p>
@@ -347,7 +338,6 @@ const DesktopView = () => {
                 formatBenefits={formatBenefits}
                 formatEducations={formatEducations}
                 formatSkills={formatSkills}
-                formatCompany={formatCompany}
               />
             </div>
           )}

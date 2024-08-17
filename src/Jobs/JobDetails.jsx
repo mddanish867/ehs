@@ -19,7 +19,6 @@ const JobDetails = ({
   formatBenefits,
   formatEducations,
   formatSkills,
-  formatCompany
 }) => {
   const isMobile = useIsMobile(); // Use the custom hook
   const [job, setJob] = useState(null); // Initialize as null
@@ -56,7 +55,7 @@ const JobDetails = ({
         </li>
       )));
 
-      const educationFormatter =
+  const educationFormatter =
     formatEducations ||
     ((education) =>
       education.split(".").map((line, index) => (
@@ -65,23 +64,14 @@ const JobDetails = ({
         </li>
       )));
 
-      const skillFormatter =
-      formatSkills ||
-      ((skill) =>
-        skill.split(".").map((line, index) => (
-          <li key={index} className="text-gray-600">
-            {line}
-          </li>
-        )));
-
-        const companyFormatter =
-      formatCompany ||
-      ((company) =>
-        company.split("\n").map((line, index) => (
-          <li key={index} className="text-gray-600">
-            {line}
-          </li>
-        )));
+  const skillFormatter =
+    formatSkills ||
+    ((skill) =>
+      skill.split(".").map((line, index) => (
+        <li key={index} className="text-gray-600">
+          {line}
+        </li>
+      )));
 
   const dateFormatter =
     formatDate || ((date) => new Date(date).toLocaleDateString());
@@ -103,6 +93,9 @@ const JobDetails = ({
         <FaBriefcase className="mr-2" />
         <p>{job.experience}</p>
       </div>
+      <p className="text-gray-500 mt-4 p-0">
+        Posted: {dateFormatter(new Date(job.postedDate))}
+      </p>
       {/* Buttons in a row for desktop */}
       <div
         className={`flex flex-wrap space-x-4 mt-4 ${
@@ -123,7 +116,7 @@ const JobDetails = ({
           <FaPaperPlane />
           <span className="hidden sm:inline">Apply</span>
           <span className="inline sm:hidden">Apply</span>
-        </button>
+        </button>        
       </div>
       {/* Buttons in mobile view */}
       <div
@@ -191,37 +184,29 @@ const JobDetails = ({
         </p>
         <p className="text-gray-500">
           <b>Role Category:</b> {job.title}
-        </p>        
+        </p>
       </div>
-
       <div className="mt-4 p-2">
-      <p className="text-gray-500">
+        <p className="text-gray-500">
           <b>Education:</b> {educationFormatter(job.education)}
         </p>
-        </div>
-
-        <div className="mt-4 p-2">
-      <p className="text-gray-500">
+      </div>
+      <div className="mt-4 p-2">
+        <p className="text-gray-500">
           <b>Skills Required:</b> {skillFormatter(job.skills)}
         </p>
-        </div>
-
-        <div className="mt-4 p-2">
+      </div>
+      <div className="mt-4 p-2">
         <p className="text-gray-500">
           <b>Interested candidates can also share cv at: {job.email}</b>
         </p>
-        </div>
-
-      <p className="text-gray-400">
-        {job.companyType} - {dateFormatter(new Date(job.postedDate))}
-      </p>
-
-
+      </div>
       <div className="mt-10 p-2">
-      <p className="text-gray-400">
-        About Company:{companyFormatter(job.aboutcompany)}
-      </p>
-
+        <p className="text-gray-500">
+          About Company:
+          <br />
+          {job.aboutcompany}
+        </p>
       </div>
     </div>
   );
