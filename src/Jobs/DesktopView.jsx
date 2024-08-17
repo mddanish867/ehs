@@ -149,14 +149,44 @@ const DesktopView = () => {
   };
 
   // Format job description into a list format
-  const formatDescription = (description) => {
-    return description.split("\n").map((line, index) => (
-      <li key={index} className="text-gray-600">
-        {line}
-      </li>
+  const formatDescription = (description, maxPoints) => {
+    const points = description.split('.'); // Assuming each bullet point ends with a period
+    return points.slice(0, maxPoints).map((point, index) => (
+      <li key={index}>{point.trim()}</li>
     ));
   };
 
+  // Format job benefits into a list format
+  const formatBenefits = (benefits, maxPoints) => {
+    const points = benefits.split('.'); 
+    return points.slice(0, maxPoints).map((point, index) => (
+      <li key={index}>{point.trim()}</li>
+    ));
+  };
+  
+  // Format job education into a list format
+  const formatEducations = (education, maxPoints) => {
+    const points = education.split('.'); 
+    return points.slice(0, maxPoints).map((point, index) => (
+      <li key={index}>{point.trim()}</li>
+    ));
+  };
+
+  const formatSkills = (skill, maxPoints) => {
+    const points = skill.split('.'); 
+    return points.slice(0, maxPoints).map((point, index) => (
+      <li key={index}>{point.trim()}</li>
+    ));
+  };
+
+  const formatCompany = (company, maxPoints) => {
+    const points = company.split('\n'); 
+    return points.slice(0, maxPoints).map((point, index) => (
+      <li key={index}>{point.trim()}</li>
+    ));
+  };
+
+  
   // Handle job click for either navigation or pagination update
   const handleJobClick = (jobId) => {
     if (isMobile) {
@@ -314,6 +344,10 @@ const DesktopView = () => {
                 selectedJobId={pagination.selectedJobId}
                 formatDescription={formatDescription}
                 formatDate={formatDate}
+                formatBenefits={formatBenefits}
+                formatEducations={formatEducations}
+                formatSkills={formatSkills}
+                formatCompany={formatCompany}
               />
             </div>
           )}

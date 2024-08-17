@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   FaBell,
   FaEnvelope,
@@ -17,13 +17,14 @@ import { useNavigate } from "react-router-dom";
 import BottomHeader from "./BottomHeader"; // Import the BottomHeader component
 import useIsMobile from "../CustomeHooks/useIsMobile"; // Import the custom hook
 import { useLocation } from "react-router-dom";
+import useIsScroll from '../CustomeHooks/useIsScroll'; // Adjust the import path as needed
 
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoginFormOpen, setIsLoginFormOpen] = useState(false); // State for login form
   const [activeMenu, setActiveMenu] = useState(null); // Track the currently open menu in mobile view
-  const [showBottomHeader, setShowBottomHeader] = useState(true); // State for showing/hiding BottomHeader
+  const showBottomHeader = useIsScroll();
   const isMobile = useIsMobile(); // Use the custom hook
   const location = useLocation();
   const isHomepage = location.pathname === "/"; // Check if the current path is the homepage
@@ -64,25 +65,7 @@ const Navbar = () => {
     ));
   };
 
-  // Scrolling function
-  useEffect(() => {
-    let lastScrollTop = 0;
-    const handleScroll = () => {
-      const currentScrollTop = window.scrollY;
-      if (currentScrollTop > lastScrollTop) {
-        // Scrolling down
-        setShowBottomHeader(false);
-      } else {
-        // Scrolling up
-        setShowBottomHeader(true);
-      }
-      lastScrollTop = currentScrollTop;
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
+ 
   return (
     <header className="bg-white shadow sticky top-0 z-50">
       <nav className="container mx-auto flex items-center justify-between lg:py-0 h-20">

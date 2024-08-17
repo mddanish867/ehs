@@ -4,11 +4,13 @@ import {
   FaChevronRight,
   FaMapMarkerAlt,
   FaBriefcase,
+  FaRupeeSign 
 } from "react-icons/fa";
 
 const JobList = ({ jobs, formatDescription, formatDate, onJobClick }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const jobsPerPage = 3; // Number of jobs to display per page
+
   // Pagination calculations
   const totalJobs = jobs.length;
   const totalPages = Math.ceil(totalJobs / jobsPerPage);
@@ -29,22 +31,33 @@ const JobList = ({ jobs, formatDescription, formatDate, onJobClick }) => {
             className="p-4 cursor-pointer border rounded shadow-md bg-white"
             onClick={() => onJobClick(job.id)}
           >
-            <h2 className="text-2xl font-bold">{job.title}</h2>
+            <h2 className="text-1xl font-semibold">{job.title}</h2>
             <p className="text-gray-700">{job.company}</p>
             <div className="flex items-center text-gray-500 mt-4">
               <FaMapMarkerAlt className="mr-2" />
               <p>{job.location}</p>
+              <p className="ml-10">{job.type}</p>
             </div>
-            <div className="flex items-center text-gray-500">
+            <div className="flex items-center text-gray-500 mt-1">
+              <FaRupeeSign className="mr-2" />
+              <p>{job.salary}</p>
+            </div>
+            <div className="flex items-center text-gray-500 mt-1">
               <FaBriefcase className="mr-2" />
-              <p>{job.type}</p>
-            </div>{" "}
-            <ul className="list-disc pl-5 mb-2">
-              {formatDescription(job.description)}
+              <p>{job.experience}</p>
+            </div>
+
+            <ul className="list-disc pl-5 mb-2 mt-2">
+              {formatDescription(job.description, 3)}
             </ul>
-            <p className="text-gray-400">
-              {job.companyType} - {formatDate(new Date(job.postedDate))}
-            </p>
+            <div className="border border-t-0 mt-4"></div>
+            <div className="flex items-center text-gray-400 mt-4">
+          <p className="mr-10">Openings: {job.opening}</p>
+          <p>Applicants: {job.application}</p>
+        </div>
+        <p className="text-gray-400 mt-4">
+          Posted: {formatDate(new Date(job.postedDate))}
+        </p>
           </div>
         ))}
       </div>
@@ -90,7 +103,6 @@ const JobList = ({ jobs, formatDescription, formatDate, onJobClick }) => {
           </nav>
         </div>
       )}
-
       {/* Pagination */}
     </div>
   );
