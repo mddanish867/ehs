@@ -5,7 +5,7 @@ import JobDetails from "./JobDetails";
 import jobsData from "../menuDtata/jobs.json";
 import Loader from "../Loader/Loader";
 import useIsMobile from "../CustomeHooks/useIsMobile"; // Import the custom hook
-
+import RecentSearch from "../Jobs/RecentSearch";
 const DesktopView = () => {
   // State for filter values and their suggestions
   const [filters, setFilters] = useState({
@@ -304,10 +304,13 @@ const DesktopView = () => {
       </div>
       {/* Results Section */}
       {status.loading && <Loader />} {/* Show loader when loading */}
-      {!status.loading && !status.showResults && (
+      {/* {!status.loading && !status.showResults && (
         <p className="text-center text-gray-500">
           Please enter search criteria.
         </p>
+      )} */}
+       {!status.loading && !status.showResults && (
+        <RecentSearch/>
       )}
       {!status.loading && status.showResults && filteredJobs.length === 0 && (
         <p className="text-center text-gray-500 mt-4">No jobs found</p>

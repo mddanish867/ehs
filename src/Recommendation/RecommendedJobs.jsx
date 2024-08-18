@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { FaMapMarkerAlt, FaBriefcase, FaRupeeSign } from 'react-icons/fa';
 import useIsMobile from "../CustomeHooks/useIsMobile"; // Import the custom hook
 import { useNavigate } from "react-router-dom";
+import jobs from "../menuDtata/jobs.json";
 
-const RecommendedJobs = ({ jobs = [], currentJobId, onJobClick, formatDescription, formatDate }) => {
+const RecommendedJobs = ({ onJobClick, formatDate }) => {
   const isMobile = useIsMobile(); // Use the custom hook
   const navigate = useNavigate();
 
@@ -19,13 +20,13 @@ const RecommendedJobs = ({ jobs = [], currentJobId, onJobClick, formatDescriptio
 
   return (
     <div className="p-4">
-      <h2 className="text-2xl font-bold mb-4">Similar Jobs</h2>
+      <h2 className="text-1xl font-bold mb-4">Similar Jobs</h2>
       <div className="flex flex-col space-y-4">
         {jobs.length > 0 ? (
           jobs.map((job) => (
             <div
               key={job.id}
-              className="p-4 cursor-pointer border rounded shadow-md bg-white"
+              className="p-4 cursor-pointer border rounded shadow-md bg-white w-full"
               onClick={() => handleJobClick(job.id)}
             >
               <h2 className="text-1xl font-semibold">{job.title}</h2>
@@ -49,13 +50,13 @@ const RecommendedJobs = ({ jobs = [], currentJobId, onJobClick, formatDescriptio
                 <p className="mr-10">Openings: {job.opening}</p>
                 <p>Applicants: {job.application}</p>
               </div>
-              <p className="text-gray-400 mt-4">
+              {/* <p className="text-gray-400 mt-4">
                 Posted: {formatDate(new Date(job.postedDate))}
-              </p>
+              </p> */}
             </div>
           ))
         ) : (
-          <p>No recommended jobs available.</p>
+          <p>No similar jobs available.</p>
         )}
       </div>
     </div>

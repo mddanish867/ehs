@@ -113,7 +113,7 @@ const JobDetails = ({
           }`}
         >
           <button className="flex items-center font-semibold space-x-2 lg:text-white lg:bg-blue-500 lg:hover:text-white bg-blue-600 text-white mb-2 rounded p-2">
-            <LiaEditSolid />
+            <LiaEditSolid className="text-yellow-600"/>
             <span className="hidden sm:inline">Power Edit</span>
             <span className="inline sm:hidden">Power Edit</span>
           </button>
@@ -129,12 +129,12 @@ const JobDetails = ({
           </button>        
         </div>
         <div
-          className={`flex flex-wrap space-x-4 mt-4 ${
+          className={`flex flex-wrap space-x-4 mt-4 font-semibold ${
             isMobile ? "block" : "hidden"
           }`}
         >
-          <button className="flex items-center space-x-2 text-blue-500 bg-white hover:text-white hover:bg-blue-500 border border-blue-300 hover:border-blue-500 p-2 mb-2 ">
-            <LiaEditSolid />
+          <button className="flex items-center space-x-2 text-blue-500 bg-white hover:text-white hover:bg-blue-500 rounded border border-blue-300 hover:border-blue-500 p-2 mb-2 ">
+            <LiaEditSolid className="text-orange-500" />
             <span className="hidden sm:inline">Power Edit</span>
             <span className="inline sm:hidden">Power Edit</span>
           </button>
@@ -214,10 +214,10 @@ const JobDetails = ({
             <br />
             {job.aboutcompany}
           </p>
+        </div>        
         </div>
         {/* Add RecommendedJobs component */}
         <RecommendedJobs jobs={job} dateFormatter={dateFormatter}/>
-        </div>
     </>
   );
 };

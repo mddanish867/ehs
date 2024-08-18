@@ -6,7 +6,8 @@ import {
   FaBookmark,
   FaAngleDown,
   FaAngleUp,
-} from "react-icons/fa";
+} from "react-icons/fa6";
+
 import { SiGoogledocs } from "react-icons/si";
 import { RiBookmark3Fill } from "react-icons/ri";
 import { IoSettingsSharp } from "react-icons/io5";
