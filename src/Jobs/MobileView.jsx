@@ -11,12 +11,12 @@ function MobileView() {
   };
 
   return (
-    <div className="mt-5 flex items-center border rounded-full shadow-blue-400 shadow-lg border-gray-300">
+    <div className="mt-5 flex items-center rounded-full shadow-blue-400 shadow-lg">
       <FaSearch className="ml-4 text-gray-500" />
       <input
         type="text"
         placeholder="Search by job, company or skills"
-        className="w-full p-4 pl-6 rounded-full border-none  outline-none"
+        className="w-full p-4 pl-2 rounded-full border-none  outline-none"
         onClick={handleMobileSearchClick}
       />
     </div>
