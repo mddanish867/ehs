@@ -88,7 +88,7 @@ const JobDetails = ({
 
   return (
     <>
-      <div className="p-4 rounded bg-white shadow-md">
+      <div className="p-4 rounded bg-white shadow-md mt-4">
         <h2 className="text-xl font-bold">{job.title}</h2>
         <p className="text-gray-700 text-lg">{job.company}</p>
         <div className="flex items-center text-gray-500 mt-4">
@@ -112,12 +112,12 @@ const JobDetails = ({
             isMobile ? "hidden" : "block"
           }`}
         >
-          <button className="flex items-center font-semibold space-x-2 lg:text-white lg:bg-blue-500 lg:hover:text-white bg-blue-600 text-white mb-2 rounded p-2">
-            <LiaEditSolid className="text-yellow-600"/>
+          <button className="flex items-center font-semibold space-x-2 lg:text-blue-500 border border-blue-500 lg:bg-white  lg:hover:text-blue-500 bg-blue-600 text-white mb-2 rounded p-2">
+            <LiaEditSolid className="text-orange-600"/>
             <span className="hidden sm:inline">Power Edit</span>
             <span className="inline sm:hidden">Power Edit</span>
           </button>
-          <button className="flex items-center font-semibold space-x-2 p-2 text-blue-500 border border-blue-500 hover:bg-blue-500 hover:text-white rounded mb-2">
+          <button className="flex items-center font-semibold space-x-2 p-2 text-white lg:bg-blue-500  hover:bg-blue-500 hover:text-white rounded mb-2">
             <FaBookmark />
             <span className="hidden sm:inline">Save Job</span>
             <span className="inline sm:hidden">Save</span>

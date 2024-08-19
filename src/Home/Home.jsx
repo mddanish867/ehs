@@ -6,7 +6,7 @@ const Home = () => {
   const isMobile = useIsMobile(); // Use the custom hook
 
   return (
-    <div className="min-h-screen bg-white p-6">
+    <div className="min-h-screen bg-gray-50 p-6">
       <JobSearch />
       {isMobile && (
         <div className="text-2xl font-bold text-gray-900 mt-6 items-center">
