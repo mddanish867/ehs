@@ -105,7 +105,6 @@ const Login = ({ onClose }) => {
                 onChange={handleChange}
                 className={`w-full px-3 py-2 border rounded focus:outline-blue-500 pl-3 ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
                 placeholder="Enter your email"
-                required
               />
               {errors.email && (
                 <div className="absolute right-0 top-1/2 transform -translate-y-1/2 px-2 text-red-500 text-xs">
@@ -122,8 +121,7 @@ const Login = ({ onClose }) => {
                 value={formData.password}
                 onChange={handleChange}
                 className={`w-full px-3 py-2 border focus:outline-blue-500  rounded pl-3 ${errors.password ? 'border-red-500' : 'border-gray-300'}`}
-                placeholder="Enter your password"
-                required
+                placeholder="Enter your password"                
               />
               {errors.password && (
                 <div className="absolute right-0 top-1/2 transform -translate-y-1/2 px-2 text-red-500 text-xs">
