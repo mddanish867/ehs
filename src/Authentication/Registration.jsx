@@ -89,7 +89,7 @@ const Registration = () => {
           </a>
         </div>
 
-        <h2 className="text-xl font-semibold mb-6 lg:text-start lg:mt-10 mt-20">Create an account</h2>
+        <h2 className="text-xl font-semibold mb-6 lg:text-start lg:mt-10 mt-16">Create an account</h2>
         <form onSubmit={handleSubmit}>
           <div className="relative mb-4">
             <div className={`absolute left-0 top-1/2 transform -translate-y-1/2 px-2 text-red-500 text-xs ${!errors.name ? 'invisible' : ''}`}>
