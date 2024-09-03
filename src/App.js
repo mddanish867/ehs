@@ -18,23 +18,24 @@ function App() {
     <Router>
       <div>
         {isLoginOpen && <Login onClose={closeLoginPopup} />}
-        <Layout>
-          <Routes>
-            <Route
-              path="/login"
-              element={<Login onClose={closeLoginPopup} />}
-            />
-            <Route
-              path="/register"
-              element={<Registration onLoginClick={openLoginPopup} />}
-            />
+        <Routes>
+          {/* Layout routes */}
+          <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/desktopsearch" element={<DesktopView />} />
             <Route path="/job/:id" element={<JobDetails />} />
+          </Route>
 
-            {/* Add other routes here */}
-          </Routes>
-        </Layout>
+          {/* Routes outside of Layout */}
+          <Route
+            path="/login"
+            element={<Login onClose={closeLoginPopup} />}
+          />
+          <Route
+            path="/register"
+            element={<Registration onLoginClick={openLoginPopup} />}
+          />
+        </Routes>
       </div>
     </Router>
   );
